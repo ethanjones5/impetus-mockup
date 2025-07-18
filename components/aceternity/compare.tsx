@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { SparklesCore } from "/components/ui/sparkles";
+import { SparklesCore } from "@/components/aceternity/sparkles";
 import { AnimatePresence, motion } from "motion/react";
-import { cn } from "/lib/utils";
+import { cn } from "@/lib/utils";
 import { IconDotsVertical } from "@tabler/icons-react";
 
 interface CompareProps {

@@ -66,7 +66,7 @@ export const ServicesList = ({
               className={`overflow-hidden bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all duration-300 ${service.popular ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''} ${currentLayout === "list" ? 'flex flex-col md:flex-row' : ''}`}
             >
               {service.popular && (
-                <div className="bg-blue-600 text-white text-center py-2 px-4 text-sm font-medium">
+                <div className="bg-gold-600 text-white text-center py-2 px-4 text-sm font-medium">
                   Most Popular
                 </div>
               )}
@@ -136,7 +136,7 @@ export const ServicesList = ({
         {/* Bottom CTA */}
         <div className="text-center mt-12">
           <p className="text-slate-600 dark:text-slate-300 mb-4">
-            Need a custom solution? We'd love to discuss your specific requirements.
+            Need a custom solution? We&rsquo;d love to discuss your specific requirements.
           </p>
           <Button size="lg" asChild>
             <a href="/contact">Get Custom Quote</a>

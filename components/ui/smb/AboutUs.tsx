@@ -84,7 +84,7 @@ export const AboutUs = ({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat, index) => (
             <Card key={index} className="p-6 text-center bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400 mb-2">
                 {stat.value}
               </div>
               <div className="text-sm text-slate-600 dark:text-slate-300">
@@ -98,7 +98,7 @@ export const AboutUs = ({
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {achievements.map((achievement, index) => (
             <Card key={index} className="p-6 text-center bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-full mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gold-100 dark:bg-gold-900 text-gold-600 dark:text-gold-400 rounded-full mb-4">
                 {getIcon(achievement.icon || "award")}
               </div>
               <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">

@@ -100,7 +100,7 @@ export const LeadForm = ({
   }
 
   return (
-    <section className={`py-16 bg-blue-50 dark:bg-slate-800 ${className}`}>
+    <section className={`py-16 bg-gold-50 dark:bg-slate-800 ${className}`}>
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
@@ -128,10 +128,10 @@ export const LeadForm = ({
                   <div className="space-y-4">
                     {contactInfo.phone && (
                       <div className="flex items-center gap-3">
-                        <Phone className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <Phone className="h-5 w-5 text-gold-600 dark:text-gold-400" />
                         <div>
                           <div className="text-sm text-slate-500 dark:text-slate-400">Phone</div>
-                          <a href={`tel:${contactInfo.phone}`} className="text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                          <a href={`tel:${contactInfo.phone}`} className="text-slate-900 dark:text-white hover:text-gold-600 dark:hover:text-gold-400">
                             {contactInfo.phone}
                           </a>
                         </div>
@@ -140,10 +140,10 @@ export const LeadForm = ({
                     
                     {contactInfo.email && (
                       <div className="flex items-center gap-3">
-                        <Mail className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <Mail className="h-5 w-5 text-gold-600 dark:text-gold-400" />
                         <div>
                           <div className="text-sm text-slate-500 dark:text-slate-400">Email</div>
-                          <a href={`mailto:${contactInfo.email}`} className="text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                          <a href={`mailto:${contactInfo.email}`} className="text-slate-900 dark:text-white hover:text-gold-600 dark:hover:text-gold-400">
                             {contactInfo.email}
                           </a>
                         </div>
@@ -152,7 +152,7 @@ export const LeadForm = ({
                     
                     {contactInfo.address && (
                       <div className="flex items-center gap-3">
-                        <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <MapPin className="h-5 w-5 text-gold-600 dark:text-gold-400" />
                         <div>
                           <div className="text-sm text-slate-500 dark:text-slate-400">Address</div>
                           <div className="text-slate-900 dark:text-white">

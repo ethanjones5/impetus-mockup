@@ -33,20 +33,24 @@ interface SiteHeaderProps {
 }
 
 const defaultSiteConfig: SiteConfig = {
-  name: "SaaSternity",
-  description: "Beautiful websites with shadcn/ui and Aceternity UI",
+  name: "Impetus Home Services",
+  description: "Professional Home Care & Renovation Services in Toronto/GTA",
   mainNav: [
     {
-      title: "Components",
-      href: "/components",
+      title: "Home",
+      href: "/",
     },
     {
-      title: "Templates",
-      href: "/templates",
+      title: "Handyman Services",
+      href: "/handyman",
     },
     {
-      title: "Examples",
-      href: "/examples",
+      title: "Renovations",
+      href: "/reno",
+    },
+    {
+      title: "Contact",
+      href: "/contact",
     },
   ],
 };
@@ -64,10 +68,7 @@ export function SiteHeader({
     )}>
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center space-x-8">
-          <Link href="/" className="flex items-center space-x-2">
-            <Logo />
-            <span className="font-bold text-xl">{siteConfig.name}</span>
-          </Link>
+          <Logo />
           
           {siteConfig.mainNav && siteConfig.mainNav.length > 0 && (
             <NavigationMenu className="hidden md:flex">

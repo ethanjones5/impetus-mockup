@@ -83,7 +83,7 @@ export function Testimonials({
                     
                     {/* Content */}
                     <blockquote className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white leading-relaxed mb-8">
-                      "{testimonial.content}"
+                      &ldquo;{testimonial.content}&rdquo;
                     </blockquote>
                     
                     {/* Author */}
@@ -126,7 +126,7 @@ export function Testimonials({
                   
                   {/* Content */}
                   <blockquote className="text-gray-900 dark:text-white leading-relaxed mb-6">
-                    "{testimonial.content}"
+                    &ldquo;{testimonial.content}&rdquo;
                   </blockquote>
                   
                   {/* Author */}

@@ -220,7 +220,7 @@ export const NewsletterCapture = ({
                 <div>
                   <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                     <Users className="h-5 w-5" />
-                    What you'll get:
+                    What you&rsquo;ll get:
                   </h3>
                   <ul className="space-y-2">
                     {benefits.map((benefit, index) => (

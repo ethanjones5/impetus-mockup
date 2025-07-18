@@ -76,7 +76,7 @@ export function LeadCaptureForm({
     try {
       await onSubmit(formData)
     } catch (error) {
-      console.error("Form submission error:", error)
+      // Handle form submission error silently in production
     } finally {
       setIsSubmitting(false)
     }

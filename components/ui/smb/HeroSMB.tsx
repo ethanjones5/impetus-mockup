@@ -50,7 +50,7 @@ export const HeroSMB = ({
           <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
         </div>
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <div className="absolute inset-0 bg-gradient-to-br from-gold-50 via-white to-gold-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
           <div className="absolute inset-0 bg-grid-small-black/[0.2] dark:bg-grid-small-white/[0.1]" />
         </div>
       )}
@@ -62,7 +62,7 @@ export const HeroSMB = ({
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="text-slate-900 dark:text-white">{companyName}</span>
               <br />
-              <span className="text-blue-600 dark:text-blue-400">{tagline}</span>
+              <span className="text-gold-600 dark:text-gold-400">{tagline}</span>
             </h1>
             
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl">
@@ -81,7 +81,7 @@ export const HeroSMB = ({
           
           {/* Contact Info Card */}
           <div className="flex justify-center lg:justify-end">
-            <Card className="p-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-2 border-blue-200 dark:border-blue-800 shadow-xl max-w-sm w-full">
+            <Card className="p-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-2 border-gold-200 dark:border-gold-800 shadow-xl max-w-sm w-full">
               <h3 className="text-xl font-semibold mb-4 text-center text-slate-900 dark:text-white">
                 Contact Us Today
               </h3>
@@ -89,21 +89,21 @@ export const HeroSMB = ({
               <div className="space-y-4">
                 {contactInfo.phone && (
                   <div className="flex items-center gap-3">
-                    <Phone className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                    <Phone className="h-5 w-5 text-gold-600 dark:text-gold-400" />
                     <span className="text-slate-700 dark:text-slate-300">{contactInfo.phone}</span>
                   </div>
                 )}
                 
                 {contactInfo.address && (
                   <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                    <MapPin className="h-5 w-5 text-gold-600 dark:text-gold-400" />
                     <span className="text-slate-700 dark:text-slate-300">{contactInfo.address}</span>
                   </div>
                 )}
                 
                 {contactInfo.hours && (
                   <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                    <Clock className="h-5 w-5 text-gold-600 dark:text-gold-400" />
                     <span className="text-slate-700 dark:text-slate-300">{contactInfo.hours}</span>
                   </div>
                 )}

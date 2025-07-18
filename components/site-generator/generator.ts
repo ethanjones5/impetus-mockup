@@ -828,26 +828,22 @@ export function createSaaSWebsiteDemo() {
   }
 }
 
-// Helper function to print website structure for debugging
-export function printWebsiteStructure(result: ReturnType<typeof generateCompleteWebsite>) {
-  console.log('\n🏗️  Website Structure Generated:')
-  console.log(`📋 Business Type: ${result.structure.businessType}`)
-  console.log(`🎨 Creativity Level: ${result.structure.creativityLevel}`)
-  console.log(`🎯 Goal: ${result.structure.goal}`)
-  console.log(`📊 Total Sections: ${result.structure.totalSections}`)
-  
-  console.log('\n📦 Selected Components:')
-  result.structure.components.forEach((comp, index) => {
-    console.log(`${index + 1}. ${comp.name} (${comp.id})`)
-    if (Object.keys(comp.variants || {}).length > 0) {
-      console.log(`   Variants: ${JSON.stringify(comp.variants, null, 2)}`)
-    }
-  })
-  
-  console.log('\n💡 Recommendations:')
-  result.recommendations.forEach((rec, index) => {
-    console.log(`${index + 1}. ${rec}`)
-  })
+// Helper function to return website structure for development
+export function getWebsiteStructureInfo(result: ReturnType<typeof generateCompleteWebsite>) {
+  return {
+    summary: {
+      businessType: result.structure.businessType,
+      creativityLevel: result.structure.creativityLevel,
+      goal: result.structure.goal,
+      totalSections: result.structure.totalSections
+    },
+    components: result.structure.components.map(comp => ({
+      name: comp.name,
+      id: comp.id,
+      variants: comp.variants || {}
+    })),
+    recommendations: result.recommendations
+  }
 }
 
 // Demo Functions and Examples for SMB
@@ -903,7 +899,7 @@ export function testSaaSGenerator() {
   }
   
   const result = generateCompleteWebsite(testConfig)
-  printWebsiteStructure(result)
+  // Use getWebsiteStructureInfo(result) for development debugging
   
   return result
 }
@@ -921,7 +917,7 @@ export function testSMBGenerator() {
   }
   
   const result = generateCompleteWebsite(testConfig)
-  printWebsiteStructure(result)
+  // Use getWebsiteStructureInfo(result) for development debugging
   
   return result
 } 

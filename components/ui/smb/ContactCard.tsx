@@ -81,8 +81,8 @@ export const ContactCard = ({
               <div className="space-y-4 mb-8">
                 {contactMethods.map((method, index) => (
                   <div key={index} className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-                      <div className="text-blue-600 dark:text-blue-400">
+                    <div className="flex-shrink-0 w-10 h-10 bg-gold-100 dark:bg-gold-900 rounded-full flex items-center justify-center">
+                      <div className="text-gold-600 dark:text-gold-400">
                         {getIcon(method.type)}
                       </div>
                     </div>
@@ -93,7 +93,7 @@ export const ContactCard = ({
                       {method.href ? (
                         <a 
                           href={method.href}
-                          className="text-blue-600 dark:text-blue-400 hover:underline"
+                          className="text-gold-600 dark:text-gold-400 hover:underline"
                         >
                           {method.value}
                         </a>
@@ -171,25 +171,25 @@ export const ContactCard = ({
                   </h3>
                   <ul className="space-y-4">
                     <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 flex-shrink-0" />
+                      <div className="w-2 h-2 bg-gold-600 dark:bg-gold-400 rounded-full mt-2 flex-shrink-0" />
                       <span className="text-slate-600 dark:text-slate-300">
                         Fast response times - we typically respond within 2 hours
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 flex-shrink-0" />
+                      <div className="w-2 h-2 bg-gold-600 dark:bg-gold-400 rounded-full mt-2 flex-shrink-0" />
                       <span className="text-slate-600 dark:text-slate-300">
                         Local business with deep community knowledge
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 flex-shrink-0" />
+                      <div className="w-2 h-2 bg-gold-600 dark:bg-gold-400 rounded-full mt-2 flex-shrink-0" />
                       <span className="text-slate-600 dark:text-slate-300">
                         Licensed, insured, and fully certified professionals
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 flex-shrink-0" />
+                      <div className="w-2 h-2 bg-gold-600 dark:bg-gold-400 rounded-full mt-2 flex-shrink-0" />
                       <span className="text-slate-600 dark:text-slate-300">
                         100% satisfaction guarantee on all our work
                       </span>

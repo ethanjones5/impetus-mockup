@@ -48,8 +48,9 @@ const config: SiteGenerationConfig = {
 // Generate the complete website structure
 const website = generateCompleteWebsite(config)
 
-console.log('🏗️ Generated Components:', website.structure.components)
-console.log('💡 Recommendations:', website.recommendations)
+// Access the generated structure and recommendations
+const components = website.structure.components
+const recommendations = website.recommendations
 ```
 
 ## 📋 Configuration Options

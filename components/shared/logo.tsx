@@ -4,16 +4,17 @@ import React from "react";
 
 export const Logo = ({ className }: { className?: string }) => {
   return (
-    <Link href="/" className={className}>
+    <Link href="/" className={`flex items-center ${className}`}>
       <Image
         fetchPriority="high"
         decoding="async"
         priority
         draggable={false}
-        src="/logo.png"
-        alt="Logo"
-        width={200}
-        height={200}
+        src="/impetus-logo.png"
+        alt="Impetus Home Services"
+        width={150}
+        height={80}
+        className="h-8 w-auto sm:h-10"
       />
     </Link>
   );

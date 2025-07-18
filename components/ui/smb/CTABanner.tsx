@@ -85,10 +85,10 @@ export const CTABanner = ({
       default: // standard
         return {
           background: backgroundStyle === "gradient" 
-            ? "bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800"
-            : "bg-blue-600 dark:bg-blue-700",
+                    ? "bg-gradient-to-r from-gold-600 to-gold-700 dark:from-gold-700 dark:to-gold-800"
+        : "bg-gold-600 dark:bg-gold-700",
           text: "text-white",
-          accent: "text-blue-100"
+          accent: "text-gold-100"
         }
     }
   }
@@ -144,7 +144,7 @@ export const CTABanner = ({
             <Button 
               size="lg" 
               variant={primaryCTA.variant || "default"}
-              className={`text-lg px-8 ${primaryCTA.variant === "outline" ? "border-white text-white hover:bg-white hover:text-slate-900" : "bg-white text-blue-600 hover:bg-blue-50"}`}
+              className={`text-lg px-8 ${primaryCTA.variant === "outline" ? "border-white text-white hover:bg-white hover:text-slate-900" : "bg-white text-gold-600 hover:bg-gold-50"}`}
               asChild
             >
               <a href={primaryCTA.href}>
@@ -157,7 +157,7 @@ export const CTABanner = ({
               <Button 
                 size="lg" 
                 variant={secondaryCTA.variant || "outline"}
-                className={`text-lg px-8 ${secondaryCTA.variant === "outline" || !secondaryCTA.variant ? "border-white text-white hover:bg-white hover:text-slate-900" : "bg-white text-blue-600 hover:bg-blue-50"}`}
+                className={`text-lg px-8 ${secondaryCTA.variant === "outline" || !secondaryCTA.variant ? "border-white text-white hover:bg-white hover:text-slate-900" : "bg-white text-gold-600 hover:bg-gold-50"}`}
                 asChild
               >
                 <a href={secondaryCTA.href}>

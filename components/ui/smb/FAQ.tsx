@@ -72,7 +72,7 @@ export const FAQ = ({
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <HelpCircle className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-6" />
+                      <HelpCircle className="h-12 w-12 text-gold-600 dark:text-gold-400 mx-auto mb-6" />
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             {title}
           </h2>
@@ -132,7 +132,7 @@ export const FAQ = ({
                             )}
                           </h3>
                           {faq.category && (
-                            <div className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                            <div className="text-xs text-gold-600 dark:text-gold-400 font-medium">
                               {faq.category}
                             </div>
                           )}
@@ -174,18 +174,18 @@ export const FAQ = ({
                   </h3>
                   
                   <p className="text-slate-600 dark:text-slate-300 text-sm mb-6">
-                    Can't find what you're looking for? Our friendly team is here to help you with any questions about our services.
+                    Can&rsquo;t find what you&rsquo;re looking for? Our friendly team is here to help you with any questions about our services.
                   </p>
                   
                   <div className="space-y-4">
                     {contactInfo.phone && (
                       <div className="flex items-center gap-3">
-                        <Phone className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <Phone className="h-5 w-5 text-gold-600 dark:text-gold-400" />
                         <div>
                           <div className="text-sm text-slate-500 dark:text-slate-400">Call us</div>
                           <a 
                             href={`tel:${contactInfo.phone}`}
-                            className="font-medium text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
+                            className="font-medium text-slate-900 dark:text-white hover:text-gold-600 dark:hover:text-gold-400"
                           >
                             {contactInfo.phone}
                           </a>
@@ -195,12 +195,12 @@ export const FAQ = ({
                     
                     {contactInfo.email && (
                       <div className="flex items-center gap-3">
-                        <Mail className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <Mail className="h-5 w-5 text-gold-600 dark:text-gold-400" />
                         <div>
                           <div className="text-sm text-slate-500 dark:text-slate-400">Email us</div>
                           <a 
                             href={`mailto:${contactInfo.email}`}
-                            className="font-medium text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 break-all"
+                            className="font-medium text-slate-900 dark:text-white hover:text-gold-600 dark:hover:text-gold-400 break-all"
                           >
                             {contactInfo.email}
                           </a>
@@ -221,7 +221,7 @@ export const FAQ = ({
                   <div className="mt-6 space-y-3">
                     <a 
                       href="/contact" 
-                      className="block w-full text-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                      className="block w-full text-center px-4 py-3 bg-gold-600 text-white rounded-lg hover:bg-gold-700 transition-colors font-medium"
                     >
                       Contact Us
                     </a>

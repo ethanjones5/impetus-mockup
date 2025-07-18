@@ -1,157 +1,296 @@
-import { SiteHeader } from "@/components/layout/site-header";
-import { Spotlight } from "@/components/aceternity/spotlight";
-import { MovingBorder } from "@/components/aceternity/moving-border";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import Link from "next/link";
+"use client"
+
+import { SiteShell } from "@/components/layout/SiteShell"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { BackgroundBeams } from "@/components/aceternity/background-beams"
+import { AboutUs } from "@/components/ui/smb/AboutUs"
+import { SocialProof } from "@/components/ui/smb/SocialProof"
+import { ContactCard } from "@/components/ui/smb/ContactCard"
+import { 
+  Wrench, 
+  Home, 
+  Phone, 
+  Clock, 
+  Shield, 
+  Star,
+  ArrowRight,
+  Hammer,
+  PaintBucket
+} from "lucide-react"
+import Link from "next/link"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
-      <SiteHeader />
-      
-      {/* Hero Section with Spotlight Effect */}
-      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black/[0.96] antialiased dark:bg-black/[0.96] md:items-center md:justify-center">
-        <Spotlight
-          className="-top-40 left-0 md:left-60 md:-top-20"
-          fill="white"
-        />
-        <div className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0">
-          <h1 className="bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-            Build Beautiful <br /> Websites Faster
-          </h1>
-          <p className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300 md:text-lg">
-            Combine the power of shadcn/ui components with stunning Aceternity UI effects. 
-            Perfect for creating modern, professional websites for your clients.
-          </p>
-          
-          <div className="mt-10 flex items-center justify-center gap-6">
-            <MovingBorder duration={2000} className="bg-background text-foreground">
-              Get Started
-            </MovingBorder>
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/templates">View Templates</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
+    <SiteShell>
+      {/* Split-Path Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-impetus-gray-50 to-impetus-gray-100 dark:from-impetus-gray-900 dark:to-impetus-black">
+        <BackgroundBeams className="absolute inset-0 opacity-30" />
+        
+        <div className="relative z-10 container mx-auto px-4 py-20">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Why Choose SaaSternity?
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              The perfect combination of utility and beauty for modern web development
+            <Badge variant="secondary" className="mb-4 bg-gold-100 text-gold-800 dark:bg-gold-900 dark:text-gold-200">
+              Trusted by 500+ Toronto Homeowners
+            </Badge>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-impetus-black dark:text-white mb-6">
+              <span className="block">Impetus</span>
+              <span className="bg-gradient-gold bg-clip-text text-transparent">
+                Home Services
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-impetus-gray-600 dark:text-impetus-gray-300 max-w-3xl mx-auto mb-12">
+              Your trusted partner for professional home care and renovations in Toronto/GTA. 
+              Choose your path to a better home.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-border">
-              <CardHeader>
-                <CardTitle>🎨 Beautiful Components</CardTitle>
-                <CardDescription>
-                  Stunning Aceternity UI components with smooth animations and modern design
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  From spotlight effects to moving borders, create websites that captivate your audience.
-                </p>
+
+          {/* Split Path Cards */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Handyman Services Path */}
+            <Card className="group relative overflow-hidden border-2 border-gold-200 hover:border-gold-400 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl bg-white/80 dark:bg-impetus-gray-800/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 bg-gold-100 dark:bg-gold-900 rounded-xl mr-4">
+                    <Wrench className="h-8 w-8 text-gold-600 dark:text-gold-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-impetus-black dark:text-white">
+                      Home Care & Handyman
+                    </h3>
+                    <p className="text-impetus-gray-600 dark:text-impetus-gray-300">
+                      Emergency repairs • Maintenance • Member services
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <Phone className="h-5 w-5 text-gold-600 mr-3" />
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">24/7 Emergency Hotline</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Shield className="h-5 w-5 text-gold-600 mr-3" />
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">No Call-Out Fees for Members</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="h-5 w-5 text-gold-600 mr-3" />
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Same-Day Service Available</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Star className="h-5 w-5 text-gold-600 mr-3" />
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Annual Home Health Checks</span>
+                  </div>
+                </div>
+
+                <Link href="/handyman">
+                  <Button className="w-full group-hover:bg-gold-500 bg-gold-400 hover:bg-gold-500 text-impetus-black font-semibold text-lg py-6">
+                    Explore Handyman Services
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
-            
-            <Card className="border-border">
-              <CardHeader>
-                <CardTitle>⚡ shadcn/ui Integration</CardTitle>
-                <CardDescription>
-                  Robust, accessible components built on Radix UI primitives
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Professional UI components that work seamlessly with beautiful animations.
-                </p>
+
+            {/* Renovation Services Path */}
+            <Card className="group relative overflow-hidden border-2 border-gold-200 hover:border-gold-400 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl bg-white/80 dark:bg-impetus-gray-800/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 bg-gold-100 dark:bg-gold-900 rounded-xl mr-4">
+                    <Home className="h-8 w-8 text-gold-600 dark:text-gold-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-impetus-black dark:text-white">
+                      Home Renovation Projects
+                    </h3>
+                    <p className="text-impetus-gray-600 dark:text-impetus-gray-300">
+                      Kitchens • Bathrooms • Basements • Full renovations
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <Hammer className="h-5 w-5 text-gold-600 mr-3" />
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Custom Design & Build</span>
+                  </div>
+                  <div className="flex items-center">
+                    <PaintBucket className="h-5 w-5 text-gold-600 mr-3" />
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Premium Material Selection</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Star className="h-5 w-5 text-gold-600 mr-3" />
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">ROI-Focused Improvements</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Shield className="h-5 w-5 text-gold-600 mr-3" />
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Project Management Included</span>
+                  </div>
+                </div>
+
+                <Link href="/reno">
+                  <Button className="w-full group-hover:bg-gold-500 bg-gold-400 hover:bg-gold-500 text-impetus-black font-semibold text-lg py-6">
+                    Explore Renovation Services
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
-            
-            <Card className="border-border">
-              <CardHeader>
-                <CardTitle>🚀 Client-Ready</CardTitle>
-                <CardDescription>
-                  Clone this template for each new client project and customize quickly
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Built-in theme support, responsive design, and professional layouts.
-                </p>
-              </CardContent>
-            </Card>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">500+</div>
+              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Happy Clients</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">24/7</div>
+              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Emergency Service</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">12+</div>
+              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">4.9★</div>
+              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Average Rating</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Tech Stack Section */}
-      <section className="py-20 px-4 bg-muted/50">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-8">
-            Built with Modern Technologies
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
-                <span className="text-2xl font-bold">N</span>
-              </div>
-              <p className="font-medium">Next.js 15</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
-                <span className="text-2xl font-bold">T</span>
-              </div>
-              <p className="font-medium">Tailwind CSS</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
-                <span className="text-2xl font-bold">S</span>
-              </div>
-              <p className="font-medium">shadcn/ui</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
-                <span className="text-2xl font-bold">A</span>
-              </div>
-              <p className="font-medium">Aceternity UI</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Unified About Section */}
+      <AboutUs
+        title="About Impetus Home Services"
+        description="Based in Toronto, Impetus Home Services has been the trusted choice for homeowners seeking reliable, professional service for over 12 years. Whether you need emergency repairs, ongoing home maintenance, or a complete renovation, our experienced team delivers quality results with integrity and care."
+        yearEstablished={2012}
+        achievements={[
+          {
+            title: "Licensed & Insured",
+            description: "Fully certified professionals with comprehensive coverage",
+            icon: "award"
+          },
+          {
+            title: "Expert Team",
+            description: "Skilled tradespeople with 12+ years experience",
+            icon: "users"
+          },
+          {
+            title: "Customer Focused",
+            description: "Transparent pricing and guaranteed satisfaction",
+            icon: "heart"
+          },
+          {
+            title: "24/7 Service",
+            description: "Emergency response available around the clock",
+            icon: "target"
+          }
+        ]}
+        stats={[
+          { label: "Projects Completed", value: "2,500+" },
+          { label: "Emergency Calls This Year", value: "650+" },
+          { label: "Member Retention Rate", value: "94%" },
+          { label: "Average Response Time", value: "< 2 Hours" }
+        ]}
+        mission="To provide exceptional home services that enhance the safety, comfort, and value of every home we touch, while building lasting relationships with our clients throughout the Toronto/GTA community."
+        className="py-20 bg-impetus-gray-50 dark:bg-impetus-gray-900"
+      />
 
-      {/* CTA Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-            Ready to Build Amazing Websites?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Clone this repository and start building beautiful, modern websites for your clients today.
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <Button size="lg" asChild>
-              <Link href="https://github.com/yourusername/saasternity">
-                Clone Repository
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/documentation">
-                View Docs
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
+      {/* Trust Indicators */}
+      <SocialProof
+        title="What Our Clients Say"
+        subtitle="Trusted by hundreds of homeowners across Toronto/GTA"
+        overallRating={4.9}
+        totalReviews={485}
+        reviews={[
+          {
+            name: "Michael Chen",
+            location: "North York",
+            comment: "The Impetus team saved us during a plumbing emergency. Their member hotline got us help within an hour, and the quality of work was exceptional.",
+            rating: 5,
+            source: "Google"
+          },
+          {
+            name: "Sarah Williams",
+            location: "Scarborough", 
+            comment: "Our kitchen renovation exceeded expectations. The project management was seamless and the ROI on our home value was significant.",
+            rating: 5,
+            source: "HomeStars"
+          },
+          {
+            name: "David Rodriguez",
+            location: "Etobicoke",
+            comment: "Been a member for 3 years now. The annual home health checks have prevented major issues and saved us thousands in potential repairs.",
+            rating: 5,
+            source: "BBB"
+          }
+        ]}
+        trustBadges={[
+          { name: "Better Business Bureau A+", description: "Accredited A+ Rating", verified: true },
+          { name: "Licensed & Insured", description: "Fully Licensed & Bonded", verified: true },
+          { name: "HomeStars Top Rated", description: "Verified Customer Reviews", verified: true },
+          { name: "Google Verified", description: "Google My Business Verified", verified: true }
+        ]}
+        achievements={[
+          { title: "Years in Business", value: "12+", description: "Serving Toronto since 2012" },
+          { title: "Projects Completed", value: "2,500+", description: "Satisfied customers" },
+          { title: "Response Time", value: "< 2 Hours", description: "Emergency service" },
+          { title: "Customer Rating", value: "4.9/5", description: "Average review score" }
+        ]}
+        className="py-20"
+      />
+
+      {/* Contact Section */}
+      <ContactCard
+        title="Get In Touch"
+        subtitle="Ready to improve your home? Contact Impetus Home Services today for a free consultation."
+        contactMethods={[
+          {
+            type: "phone",
+            label: "Call or Text",
+            value: "(416) 123-4567",
+            href: "tel:+14161234567",
+            icon: true
+          },
+          {
+            type: "email",
+            label: "Email Us",
+            value: "info@impetushomeservices.ca",
+            href: "mailto:info@impetushomeservices.ca",
+            icon: true
+          },
+          {
+            type: "address",
+            label: "Visit Our Office",
+            value: "123 Bloor Street West, Toronto, ON",
+            href: "https://maps.google.com/?q=123+Bloor+Street+West,+Toronto,+ON",
+            icon: true
+          },
+          {
+            type: "hours",
+            label: "Business Hours",
+            value: "Mon-Fri: 7AM-8PM, Sat-Sun: 8AM-6PM",
+            icon: true
+          }
+        ]}
+        primaryCTA={{
+          text: "Get Free Quote",
+          href: "/quote"
+        }}
+        secondaryCTA={{
+          text: "Join Home Care Plan",
+          href: "/membership"
+        }}
+        emergencyContact={{
+          label: "24/7 Emergency Line",
+          value: "(416) 123-4567",
+          href: "tel:+14161234567"
+        }}
+        showMap={true}
+        mapEmbedUrl="https://maps.google.com/embed/v1/place?key=YOUR_API_KEY&q=123+Bloor+Street+West,+Toronto,+ON"
+        className="py-20 bg-impetus-gray-50 dark:bg-impetus-gray-900"
+      />
+    </SiteShell>
+  )
+} 

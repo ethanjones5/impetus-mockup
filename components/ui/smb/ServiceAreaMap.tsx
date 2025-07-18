@@ -181,7 +181,7 @@ export const ServiceAreaMap = ({
               
               <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
                 <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Don't see your area listed? <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">Contact us</a> to check if we can serve you.
+                  Don&rsquo;t see your area listed? <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">Contact us</a> to check if we can serve you.
                 </p>
               </div>
             </Card>

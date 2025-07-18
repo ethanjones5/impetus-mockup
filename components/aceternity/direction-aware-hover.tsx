@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 
 import { AnimatePresence, motion } from "motion/react";
-import { cn } from "/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const DirectionAwareHover = ({
   imageUrl,
@@ -30,7 +30,6 @@ export const DirectionAwareHover = ({
     if (!ref.current) return;
 
     const direction = getDirection(event, ref.current);
-    console.log("direction", direction);
     switch (direction) {
       case 0:
         setDirection("top");

@@ -99,7 +99,7 @@ export const SocialProof = ({
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {achievements.map((achievement, index) => (
               <Card key={index} className="p-6 text-center bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                <div className="text-3xl font-bold text-gold-600 dark:text-gold-400 mb-2">
                   {achievement.value}
                 </div>
                 <div className="font-semibold text-slate-900 dark:text-white mb-1">
@@ -125,7 +125,7 @@ export const SocialProof = ({
               {reviews.slice(0, 6).map((review, index) => (
                 <Card key={index} className="p-6 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
                   <div className="flex items-start gap-3 mb-4">
-                    <Quote className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
+                    <Quote className="h-5 w-5 text-gold-600 dark:text-gold-400 mt-1 flex-shrink-0" />
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         {renderStars(review.rating)}
@@ -134,7 +134,7 @@ export const SocialProof = ({
                         </span>
                       </div>
                       <p className="text-slate-600 dark:text-slate-300 text-sm mb-3">
-                        "{review.comment}"
+                        &ldquo;{review.comment}&rdquo;
                       </p>
                     </div>
                   </div>
@@ -212,25 +212,25 @@ export const SocialProof = ({
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8 max-w-2xl mx-auto">
-            <Users className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-4">
+          <div className="bg-gold-50 dark:bg-gold-900/20 rounded-lg p-8 max-w-2xl mx-auto">
+            <Users className="h-12 w-12 text-gold-600 dark:text-gold-400 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gold-900 dark:text-gold-100 mb-4">
               Join Our Satisfied Customers
             </h3>
-            <p className="text-blue-700 dark:text-blue-300 mb-6">
+            <p className="text-gold-700 dark:text-gold-300 mb-6">
               Experience the same quality service that has earned us excellent reviews 
               and made us a trusted choice in our community.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/contact" 
-                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="inline-flex items-center justify-center px-6 py-3 bg-gold-600 text-white rounded-lg hover:bg-gold-700 transition-colors font-medium"
               >
                 Get Your Free Quote
               </a>
               <a 
                 href="tel:(555) 123-4567" 
-                className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors font-medium"
+                className="inline-flex items-center justify-center px-6 py-3 border border-gold-600 text-gold-600 dark:text-gold-400 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors font-medium"
               >
                 Call Us Today
               </a>

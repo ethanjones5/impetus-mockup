@@ -71,9 +71,9 @@ export const StatsBlock = ({
         }
       default: // blue
         return {
-          icon: "text-blue-600 dark:text-blue-400",
-          bg: "bg-blue-100 dark:bg-blue-900",
-          accent: "text-blue-900 dark:text-blue-100"
+                  icon: "text-gold-600 dark:text-gold-400",
+        bg: "bg-gold-100 dark:bg-gold-900",
+        accent: "text-gold-900 dark:text-gold-100"
         }
     }
   }

@@ -59,7 +59,7 @@ export const Testimonials = ({
 
   if (layout === "featured") {
     return (
-      <section className={`py-16 bg-blue-50 dark:bg-blue-900/20 ${className}`}>
+      <section className={`py-16 bg-gold-50 dark:bg-gold-900/20 ${className}`}>
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
@@ -75,10 +75,10 @@ export const Testimonials = ({
           {featuredTestimonial && (
             <div className="max-w-4xl mx-auto mb-16">
               <Card className="p-8 lg:p-12 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-center">
-                <Quote className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-6" />
+                <Quote className="h-12 w-12 text-gold-600 dark:text-gold-400 mx-auto mb-6" />
                 
                 <blockquote className="text-xl lg:text-2xl text-slate-700 dark:text-slate-300 mb-8 italic">
-                  "{featuredTestimonial.comment}"
+                  &ldquo;{featuredTestimonial.comment}&rdquo;
                 </blockquote>
                 
                 <div className="flex items-center justify-center gap-4 mb-6">
@@ -111,7 +111,7 @@ export const Testimonials = ({
                 
                 {featuredTestimonial.serviceType && (
                   <div className="mt-4">
-                    <span className="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">
+                    <span className="inline-block bg-gold-100 dark:bg-gold-900 text-gold-800 dark:text-gold-200 px-3 py-1 rounded-full text-sm">
                       {featuredTestimonial.serviceType}
                     </span>
                   </div>
@@ -133,7 +133,7 @@ export const Testimonials = ({
                   </div>
                   
                   <blockquote className="text-slate-600 dark:text-slate-300 mb-4 italic">
-                    "{testimonial.comment}"
+                    &ldquo;{testimonial.comment}&rdquo;
                   </blockquote>
                   
                   <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
@@ -214,7 +214,7 @@ export const Testimonials = ({
               
               {/* Comment */}
               <blockquote className="text-slate-600 dark:text-slate-300 mb-4 italic">
-                "{testimonial.comment}"
+                &ldquo;{testimonial.comment}&rdquo;
               </blockquote>
               
               {/* Project Details */}
@@ -285,7 +285,7 @@ export const Testimonials = ({
                 
                 {testimonial.serviceType && (
                   <div className="mt-3">
-                    <span className="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-xs">
+                    <span className="inline-block bg-gold-100 dark:bg-gold-900 text-gold-800 dark:text-gold-200 px-2 py-1 rounded text-xs">
                       {testimonial.serviceType}
                     </span>
                   </div>
@@ -303,7 +303,7 @@ export const Testimonials = ({
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="/contact" 
-              className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="inline-flex items-center justify-center px-6 py-3 bg-gold-600 text-white rounded-lg hover:bg-gold-700 transition-colors font-medium"
             >
               Get Your Free Quote
             </a>
