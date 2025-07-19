@@ -1,13 +1,8 @@
 "use client"
 
-import { SiteShell } from "@/components/layout/SiteShell"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { BackgroundBeams } from "@/components/aceternity/background-beams"
-import { AboutUs } from "@/components/ui/smb/AboutUs"
-import { SocialProof } from "@/components/ui/smb/SocialProof"
-import { ContactCard } from "@/components/ui/smb/ContactCard"
 import { 
   Wrench, 
   Home, 
@@ -23,274 +18,183 @@ import Link from "next/link"
 
 export default function HomePage() {
   return (
-    <SiteShell>
-      {/* Split-Path Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-impetus-gray-50 to-impetus-gray-100 dark:from-impetus-gray-900 dark:to-impetus-black">
-        <BackgroundBeams className="absolute inset-0 opacity-30" />
-        
-        <div className="relative z-10 container mx-auto px-4 py-20">
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4 bg-gold-100 text-gold-800 dark:bg-gold-900 dark:text-gold-200">
-              Trusted by 500+ Toronto Homeowners
-            </Badge>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-impetus-black dark:text-white mb-6">
-              <span className="block">Impetus</span>
-              <span className="bg-gradient-gold bg-clip-text text-transparent">
-                Home Services
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-impetus-gray-600 dark:text-impetus-gray-300 max-w-3xl mx-auto mb-12">
-              Your trusted partner for professional home care and renovations in Toronto/GTA. 
-              Choose your path to a better home.
-            </p>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+      {/* Simple Header */}
+      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="font-bold text-xl text-gray-900">Impetus Home Services</div>
+          <nav className="hidden md:flex space-x-8">
+            <Link href="/handyman" className="text-gray-600 hover:text-gray-900">Handyman</Link>
+            <Link href="/reno" className="text-gray-600 hover:text-gray-900">Renovations</Link>
+            <Button size="sm">Get Quote</Button>
+          </nav>
+        </div>
+      </header>
 
-          {/* Split Path Cards */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Handyman Services Path */}
-            <Card className="group relative overflow-hidden border-2 border-gold-200 hover:border-gold-400 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl bg-white/80 dark:bg-impetus-gray-800/80 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="p-3 bg-gold-100 dark:bg-gold-900 rounded-xl mr-4">
-                    <Wrench className="h-8 w-8 text-gold-600 dark:text-gold-400" />
+      {/* Hero Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto text-center">
+          <Badge variant="secondary" className="mb-4 bg-amber-100 text-amber-800">
+            Trusted by 500+ Toronto Homeowners
+          </Badge>
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <span className="block">Impetus</span>
+            <span className="bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">
+              Home Services
+            </span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            Your trusted partner for professional home care and renovations in Toronto/GTA. 
+            Choose your path to a better home.
+          </p>
+
+          {/* Service Path Cards */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+            {/* Handyman Services */}
+            <Card className="p-8 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="mb-6">
+                  <Wrench className="h-12 w-12 text-amber-600 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold mb-2">Handyman Services</h3>
+                  <p className="text-gray-600 mb-6">
+                    Quick fixes, maintenance, and repairs. Perfect for busy homeowners who need reliable help.
+                  </p>
+                </div>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center text-sm">
+                    <Clock className="h-4 w-4 text-green-600 mr-2" />
+                    <span>Same-day service available</span>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-impetus-black dark:text-white">
-                      Home Care & Handyman
-                    </h3>
-                    <p className="text-impetus-gray-600 dark:text-impetus-gray-300">
-                      Emergency repairs • Maintenance • Member services
-                    </p>
+                  <div className="flex items-center text-sm">
+                    <Shield className="h-4 w-4 text-green-600 mr-2" />
+                    <span>Fully insured & licensed</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <Star className="h-4 w-4 text-green-600 mr-2" />
+                    <span>4.9/5 customer rating</span>
                   </div>
                 </div>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-center">
-                    <Phone className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">24/7 Emergency Hotline</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Shield className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">No Call-Out Fees for Members</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Same-Day Service Available</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Star className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Annual Home Health Checks</span>
-                  </div>
-                </div>
-
                 <Link href="/handyman">
-                  <Button className="w-full group-hover:bg-gold-500 bg-gold-400 hover:bg-gold-500 text-impetus-black font-semibold text-lg py-6">
+                  <Button className="w-full" size="lg">
                     Explore Handyman Services
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </CardContent>
             </Card>
 
-            {/* Renovation Services Path */}
-            <Card className="group relative overflow-hidden border-2 border-gold-200 hover:border-gold-400 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl bg-white/80 dark:bg-impetus-gray-800/80 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="p-3 bg-gold-100 dark:bg-gold-900 rounded-xl mr-4">
-                    <Home className="h-8 w-8 text-gold-600 dark:text-gold-400" />
+            {/* Renovation Services */}
+            <Card className="p-8 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="mb-6">
+                  <Home className="h-12 w-12 text-amber-600 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold mb-2">Renovation Services</h3>
+                  <p className="text-gray-600 mb-6">
+                    Transform your space with expert renovations. From kitchens to full home makeovers.
+                  </p>
+                </div>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center text-sm">
+                    <PaintBucket className="h-4 w-4 text-green-600 mr-2" />
+                    <span>Full design consultation</span>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-impetus-black dark:text-white">
-                      Home Renovation Projects
-                    </h3>
-                    <p className="text-impetus-gray-600 dark:text-impetus-gray-300">
-                      Kitchens • Bathrooms • Basements • Full renovations
-                    </p>
+                  <div className="flex items-center text-sm">
+                    <Hammer className="h-4 w-4 text-green-600 mr-2" />
+                    <span>Complete project management</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <Shield className="h-4 w-4 text-green-600 mr-2" />
+                    <span>1-year warranty included</span>
                   </div>
                 </div>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-center">
-                    <Hammer className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Custom Design & Build</span>
-                  </div>
-                  <div className="flex items-center">
-                    <PaintBucket className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Premium Material Selection</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Star className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">ROI-Focused Improvements</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Shield className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Project Management Included</span>
-                  </div>
-                </div>
-
                 <Link href="/reno">
-                  <Button className="w-full group-hover:bg-gold-500 bg-gold-400 hover:bg-gold-500 text-impetus-black font-semibold text-lg py-6">
-                    Explore Renovation Services
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <Button className="w-full" size="lg" variant="outline">
+                    Explore Renovations
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">500+</div>
-              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Happy Clients</div>
+      {/* Quick Stats */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold text-amber-600 mb-2">500+</div>
+              <div className="text-gray-600">Happy Customers</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">24/7</div>
-              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Emergency Service</div>
+            <div>
+              <div className="text-3xl font-bold text-amber-600 mb-2">5+</div>
+              <div className="text-gray-600">Years Experience</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">12+</div>
-              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Years Experience</div>
+            <div>
+              <div className="text-3xl font-bold text-amber-600 mb-2">24/7</div>
+              <div className="text-gray-600">Emergency Service</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">4.9★</div>
-              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Average Rating</div>
+            <div>
+              <div className="text-3xl font-bold text-amber-600 mb-2">4.9★</div>
+              <div className="text-gray-600">Customer Rating</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Unified About Section */}
-      <AboutUs
-        title="About Impetus Home Services"
-        description="Based in Toronto, Impetus Home Services has been the trusted choice for homeowners seeking reliable, professional service for over 12 years. Whether you need emergency repairs, ongoing home maintenance, or a complete renovation, our experienced team delivers quality results with integrity and care."
-        yearEstablished={2012}
-        achievements={[
-          {
-            title: "Licensed & Insured",
-            description: "Fully certified professionals with comprehensive coverage",
-            icon: "award"
-          },
-          {
-            title: "Expert Team",
-            description: "Skilled tradespeople with 12+ years experience",
-            icon: "users"
-          },
-          {
-            title: "Customer Focused",
-            description: "Transparent pricing and guaranteed satisfaction",
-            icon: "heart"
-          },
-          {
-            title: "24/7 Service",
-            description: "Emergency response available around the clock",
-            icon: "target"
-          }
-        ]}
-        stats={[
-          { label: "Projects Completed", value: "2,500+" },
-          { label: "Emergency Calls This Year", value: "650+" },
-          { label: "Member Retention Rate", value: "94%" },
-          { label: "Average Response Time", value: "< 2 Hours" }
-        ]}
-        mission="To provide exceptional home services that enhance the safety, comfort, and value of every home we touch, while building lasting relationships with our clients throughout the Toronto/GTA community."
-        className="py-20 bg-impetus-gray-50 dark:bg-impetus-gray-900"
-      />
+      {/* Simple CTA */}
+      <section className="py-20 bg-amber-50">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Ready to Get Started?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Contact us today for a free consultation and quote for your home improvement needs.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-amber-600 hover:bg-amber-700">
+              <Phone className="mr-2 h-4 w-4" />
+              Call (416) 555-0123
+            </Button>
+            <Button size="lg" variant="outline">
+              Get Free Quote
+            </Button>
+          </div>
+        </div>
+      </section>
 
-      {/* Trust Indicators */}
-      <SocialProof
-        title="What Our Clients Say"
-        subtitle="Trusted by hundreds of homeowners across Toronto/GTA"
-        overallRating={4.9}
-        totalReviews={485}
-        reviews={[
-          {
-            name: "Michael Chen",
-            location: "North York",
-            comment: "The Impetus team saved us during a plumbing emergency. Their member hotline got us help within an hour, and the quality of work was exceptional.",
-            rating: 5,
-            source: "Google"
-          },
-          {
-            name: "Sarah Williams",
-            location: "Scarborough", 
-            comment: "Our kitchen renovation exceeded expectations. The project management was seamless and the ROI on our home value was significant.",
-            rating: 5,
-            source: "HomeStars"
-          },
-          {
-            name: "David Rodriguez",
-            location: "Etobicoke",
-            comment: "Been a member for 3 years now. The annual home health checks have prevented major issues and saved us thousands in potential repairs.",
-            rating: 5,
-            source: "BBB"
-          }
-        ]}
-        trustBadges={[
-          { name: "Better Business Bureau A+", description: "Accredited A+ Rating", verified: true },
-          { name: "Licensed & Insured", description: "Fully Licensed & Bonded", verified: true },
-          { name: "HomeStars Top Rated", description: "Verified Customer Reviews", verified: true },
-          { name: "Google Verified", description: "Google My Business Verified", verified: true }
-        ]}
-        achievements={[
-          { title: "Years in Business", value: "12+", description: "Serving Toronto since 2012" },
-          { title: "Projects Completed", value: "2,500+", description: "Satisfied customers" },
-          { title: "Response Time", value: "< 2 Hours", description: "Emergency service" },
-          { title: "Customer Rating", value: "4.9/5", description: "Average review score" }
-        ]}
-        className="py-20"
-      />
-
-      {/* Contact Section */}
-      <ContactCard
-        title="Get In Touch"
-        subtitle="Ready to improve your home? Contact Impetus Home Services today for a free consultation."
-        contactMethods={[
-          {
-            type: "phone",
-            label: "Call or Text",
-            value: "(416) 123-4567",
-            href: "tel:+14161234567",
-            icon: true
-          },
-          {
-            type: "email",
-            label: "Email Us",
-            value: "info@impetushomeservices.ca",
-            href: "mailto:info@impetushomeservices.ca",
-            icon: true
-          },
-          {
-            type: "address",
-            label: "Visit Our Office",
-            value: "123 Bloor Street West, Toronto, ON",
-            href: "https://maps.google.com/?q=123+Bloor+Street+West,+Toronto,+ON",
-            icon: true
-          },
-          {
-            type: "hours",
-            label: "Business Hours",
-            value: "Mon-Fri: 7AM-8PM, Sat-Sun: 8AM-6PM",
-            icon: true
-          }
-        ]}
-        primaryCTA={{
-          text: "Get Free Quote",
-          href: "/quote"
-        }}
-        secondaryCTA={{
-          text: "Join Home Care Plan",
-          href: "/membership"
-        }}
-        emergencyContact={{
-          label: "24/7 Emergency Line",
-          value: "(416) 123-4567",
-          href: "tel:+14161234567"
-        }}
-        showMap={true}
-        mapEmbedUrl="https://maps.google.com/embed/v1/place?key=YOUR_API_KEY&q=123+Bloor+Street+West,+Toronto,+ON"
-        className="py-20 bg-impetus-gray-50 dark:bg-impetus-gray-900"
-      />
-    </SiteShell>
+      {/* Simple Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="font-bold text-lg mb-4">Impetus Home Services</h3>
+              <p className="text-gray-400">
+                Professional home care and renovations in Toronto/GTA.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Services</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/handyman" className="hover:text-white">Handyman Services</Link></li>
+                <li><Link href="/reno" className="hover:text-white">Renovations</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Contact</h4>
+              <div className="text-gray-400 space-y-2">
+                <div>📞 (416) 555-0123</div>
+                <div>📧 info@impetushome.ca</div>
+                <div>📍 Toronto, ON</div>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 Impetus Home Services. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
   )
 } 
