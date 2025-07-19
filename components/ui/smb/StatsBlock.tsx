@@ -1,180 +1,158 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { TrendingUp, Users, Clock, Award, Star, Target } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { TrendingUp, Users, Award, Target } from "lucide-react"
 
-export interface Stat {
+interface Stat {
   label: string
   value: string
-  description?: string
-  icon?: "trending" | "users" | "clock" | "award" | "star" | "target"
-  color?: "blue" | "green" | "purple" | "orange" | "red"
+  change?: {
+    value: string
+    trend: "up" | "down" | "neutral"
+  }
+  icon?: "trending" | "users" | "award" | "target"
 }
 
-export interface StatsBlockProps {
+interface Achievement {
+  title: string
+  description: string
+  value: string
+  icon?: "trending" | "users" | "award" | "target"
+}
+
+interface StatsBlockProps {
   title?: string
   subtitle?: string
-  stats: Stat[]
-  layout?: "grid" | "row"
-  showIcons?: boolean
-  animated?: boolean
+  stats?: Stat[]
+  achievements?: Achievement[]
+  layout?: "stats-only" | "achievements-only" | "both"
+  showComparison?: boolean
   className?: string
 }
 
-export const StatsBlock = ({
-  title = "Our Track Record",
-  subtitle = "Numbers that speak to our commitment to excellence and customer satisfaction",
-  stats,
-  layout = "grid",
-  showIcons = true,
-  animated = true,
+const getIcon = (iconType?: string) => {
+  const iconClass = "h-6 w-6 text-gold-400"
+  switch (iconType) {
+    case "trending": return <TrendingUp className={iconClass} />
+    case "users": return <Users className={iconClass} />
+    case "award": return <Award className={iconClass} />
+    case "target": return <Target className={iconClass} />
+    default: return <TrendingUp className={iconClass} />
+  }
+}
+
+export function StatsBlock({
+  title = "Our Performance",
+  subtitle = "Numbers that demonstrate our commitment to excellence",
+  stats = [],
+  achievements = [],
+  layout = "both",
+  showComparison = false,
   className = ""
-}: StatsBlockProps) => {
-  const getIcon = (iconType?: string) => {
-    const iconClass = "h-6 w-6"
-    switch (iconType) {
-      case "trending": return <TrendingUp className={iconClass} />
-      case "users": return <Users className={iconClass} />
-      case "clock": return <Clock className={iconClass} />
-      case "award": return <Award className={iconClass} />
-      case "star": return <Star className={iconClass} />
-      case "target": return <Target className={iconClass} />
-      default: return <TrendingUp className={iconClass} />
-    }
-  }
-
-  const getColorClasses = (color?: string) => {
-    switch (color) {
-      case "green":
-        return {
-          icon: "text-green-600 dark:text-green-400",
-          bg: "bg-green-100 dark:bg-green-900",
-          accent: "text-green-900 dark:text-green-100"
-        }
-      case "purple":
-        return {
-          icon: "text-purple-600 dark:text-purple-400",
-          bg: "bg-purple-100 dark:bg-purple-900",
-          accent: "text-purple-900 dark:text-purple-100"
-        }
-      case "orange":
-        return {
-          icon: "text-orange-600 dark:text-orange-400",
-          bg: "bg-orange-100 dark:bg-orange-900",
-          accent: "text-orange-900 dark:text-orange-100"
-        }
-      case "red":
-        return {
-          icon: "text-red-600 dark:text-red-400",
-          bg: "bg-red-100 dark:bg-red-900",
-          accent: "text-red-900 dark:text-red-100"
-        }
-      default: // blue
-        return {
-                  icon: "text-gold-600 dark:text-gold-400",
-        bg: "bg-gold-100 dark:bg-gold-900",
-        accent: "text-gold-900 dark:text-gold-100"
-        }
-    }
-  }
-
-  const gridCols = stats.length === 2 ? "md:grid-cols-2" :
-                  stats.length === 3 ? "md:grid-cols-3" :
-                  stats.length === 4 ? "md:grid-cols-2 lg:grid-cols-4" :
-                  stats.length === 5 ? "md:grid-cols-2 lg:grid-cols-5" :
-                  "md:grid-cols-2 lg:grid-cols-3"
-
+}: StatsBlockProps) {
   return (
-    <section className={`py-16 bg-white dark:bg-slate-900 ${className}`}>
+    <section className={`py-16 bg-impetus-gray-900 ${className}`}>
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            {title}
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            {subtitle}
-          </p>
-        </div>
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              {title}
+            </h2>
+            <p className="text-lg text-impetus-gray-300 max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          </div>
 
-        {/* Stats */}
-        {layout === "row" ? (
-          // Row Layout for fewer stats
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {stats.map((stat, index) => {
-                const colors = getColorClasses(stat.color)
-                return (
-                  <Card key={index} className="p-8 text-center bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-                    {showIcons && (
-                      <div className={`inline-flex items-center justify-center w-16 h-16 ${colors.bg} rounded-full mb-6`}>
-                        <div className={colors.icon}>
-                          {getIcon(stat.icon)}
-                        </div>
-                      </div>
-                    )}
-                    <div className={`text-4xl md:text-5xl font-bold mb-2 ${animated ? 'transition-all duration-300 hover:scale-105' : ''}`}>
-                      <span className="text-slate-900 dark:text-white">
-                        {stat.value}
+          {/* Stats Grid */}
+          {(layout === "stats-only" || layout === "both") && stats.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+              {stats.map((stat, index) => (
+                <Card key={index} className="p-8 text-center bg-impetus-gray-800 border-impetus-gray-700 hover:shadow-lg transition-shadow">
+                  {stat.icon && (
+                    <div className="flex justify-center mb-4">
+                      {getIcon(stat.icon)}
+                    </div>
+                  )}
+                  
+                  <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
+                    <span className="text-white">
+                      {stat.value}
+                    </span>
+                  </div>
+                  
+                  <div className="text-lg font-semibold text-white mb-2">
+                    {stat.label}
+                  </div>
+                  
+                  {showComparison && stat.change && (
+                    <div className="text-sm text-impetus-gray-300">
+                      <span className={
+                        stat.change.trend === "up" ? "text-green-400" :
+                        stat.change.trend === "down" ? "text-red-400" :
+                        "text-impetus-gray-400"
+                      }>
+                        {stat.change.value}
                       </span>
                     </div>
-                    <div className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                      {stat.label}
-                    </div>
-                    {stat.description && (
-                      <div className="text-sm text-slate-600 dark:text-slate-300">
-                        {stat.description}
-                      </div>
-                    )}
-                  </Card>
-                )
-              })}
+                  )}
+                </Card>
+              ))}
             </div>
-          </div>
-        ) : (
-          // Grid Layout for more stats
-          <div className={`grid grid-cols-1 ${gridCols} gap-6`}>
-            {stats.map((stat, index) => {
-              const colors = getColorClasses(stat.color)
-              return (
-                <Card key={index} className="p-6 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+          )}
+
+          {/* Achievements */}
+          {(layout === "achievements-only" || layout === "both") && achievements.length > 0 && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {achievements.map((achievement, index) => (
+                <Card key={index} className="p-6 bg-impetus-gray-800 border-impetus-gray-700 hover:shadow-lg transition-shadow">
                   <div className="flex items-start gap-4">
-                    {showIcons && (
-                      <div className={`flex-shrink-0 w-12 h-12 ${colors.bg} rounded-lg flex items-center justify-center`}>
-                        <div className={colors.icon}>
-                          {getIcon(stat.icon)}
-                        </div>
-                      </div>
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <div className={`text-2xl md:text-3xl font-bold mb-1 ${animated ? 'transition-all duration-300 hover:scale-105' : ''}`}>
-                        <span className="text-slate-900 dark:text-white">
-                          {stat.value}
+                    <div className="flex-shrink-0 w-12 h-12 bg-gold-100 dark:bg-gold-900 rounded-lg flex items-center justify-center">
+                      {getIcon(achievement.icon)}
+                    </div>
+                    
+                    <div className="flex-1">
+                      <div className="text-2xl font-bold text-gold-400 mb-2">
+                        <span className="text-white">
+                          {achievement.value}
                         </span>
                       </div>
-                      <div className="font-semibold text-slate-900 dark:text-white mb-1">
-                        {stat.label}
+                      
+                      <div className="font-semibold text-white mb-1">
+                        {achievement.title}
                       </div>
-                      {stat.description && (
-                        <div className="text-sm text-slate-600 dark:text-slate-300">
-                          {stat.description}
-                        </div>
-                      )}
+                      
+                      <div className="text-sm text-impetus-gray-300">
+                        {achievement.description}
+                      </div>
                     </div>
                   </div>
                 </Card>
-              )
-            })}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
 
-        {/* Bottom Message */}
-        <div className="text-center mt-12">
-          <p className="text-slate-600 dark:text-slate-300 mb-4">
-            These numbers represent real results for real customers. 
-            <br />
-            Let us help you achieve similar success.
-          </p>
+          {/* Bottom CTA */}
+          <div className="text-center mt-12">
+            <p className="text-impetus-gray-300 mb-4">
+              Ready to experience the difference these numbers represent?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/contact" 
+                className="inline-flex items-center justify-center px-6 py-3 bg-gold-400 text-impetus-black rounded-lg hover:bg-gold-500 transition-colors font-medium"
+              >
+                Get Your Free Quote
+              </a>
+              <a 
+                href="/about" 
+                className="inline-flex items-center justify-center px-6 py-3 border border-impetus-gray-600 text-white rounded-lg hover:bg-impetus-gray-700 transition-colors font-medium"
+              >
+                Learn More About Us
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

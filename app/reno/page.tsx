@@ -69,7 +69,7 @@ export default function RenovationPage() {
         name: "Impetus Home Services",
         mainNav: [
           { title: "Home", href: "/" },
-          { title: "Handyman Services", href: "/handyman" },
+          { title: "Home Care Services", href: "/handyman" },
           { title: "Renovations", href: "/reno" },
           { title: "Contact", href: "/contact" }
         ]

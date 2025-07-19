@@ -856,7 +856,7 @@ export function createSMBWebsiteDemo() {
     companyName: 'LocalPro Services',
     industry: 'Home Improvement',
     targetAudience: 'Local homeowners',
-    keyFeatures: ['Licensed & Insured', '24/7 Emergency Service', 'Free Estimates', 'Satisfaction Guarantee', '15+ Years Experience']
+            keyFeatures: ['Licensed & Insured', 'Priority Member Access', 'Free Estimates', 'Satisfaction Guarantee', '15+ Years Experience']
   }
 
   // Example 2: Lead-generation focused contractor
@@ -913,7 +913,7 @@ export function testSMBGenerator() {
     companyName: 'TestSMB',
     industry: 'Construction',
     targetAudience: 'Local homeowners',
-    keyFeatures: ['Licensed & Insured', 'Free Estimates', '24/7 Service', 'Satisfaction Guarantee']
+            keyFeatures: ['Licensed & Insured', 'Free Estimates', 'Priority Access', 'Satisfaction Guarantee']
   }
   
   const result = generateCompleteWebsite(testConfig)

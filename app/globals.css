@@ -26,36 +26,36 @@
 
 @layer base {
   :root {
-    /* Impetus Home Services - Black & Soft Gold Theme */
-    --background: 0 0% 98%; /* Nearly white background */
-    --foreground: 0 0% 8%; /* Very dark gray */
-    --card: 0 0% 100%; /* Pure white cards */
-    --card-foreground: 0 0% 8%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    /* Impetus Home Services - Black & Soft Gold Theme (Light Mode using Black Background) */
+    --background: 0 0% 0%; /* Pure black background */
+    --foreground: 0 0% 95%; /* Light text for black background */
+    --card: 0 0% 8%; /* Dark cards */
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
     --primary: 45 95% 68%; /* Soft gold primary */
     --primary-foreground: 0 0% 8%; /* Dark text on gold */
-    --secondary: 0 0% 95%; /* Light gray secondary */
-    --secondary-foreground: 0 0% 15%;
-    --muted: 0 0% 94%; /* Muted gray */
-    --muted-foreground: 0 0% 40%;
-    --accent: 45 80% 75%; /* Lighter gold accent */
+    --secondary: 0 0% 12%; /* Dark gray secondary */
+    --secondary-foreground: 0 0% 85%;
+    --muted: 0 0% 10%; /* Dark muted */
+    --muted-foreground: 0 0% 60%;
+    --accent: 45 80% 60%; /* Gold accent */
     --accent-foreground: 0 0% 8%;
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 94%;
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
     --ring: 45 95% 68%; /* Gold ring/focus */
     --chart-1: 45 95% 68%; /* Gold */
-    --chart-2: 0 0% 20%; /* Dark gray */
+    --chart-2: 0 0% 80%; /* Light gray */
     --chart-3: 45 80% 55%; /* Darker gold */
-    --chart-4: 0 0% 60%; /* Medium gray */
+    --chart-4: 0 0% 40%; /* Medium gray */
     --chart-5: 45 70% 45%; /* Deep gold */
     --radius: 0.5rem;
   }
   .dark {
     /* Dark mode - primarily black with gold accents */
-    --background: 0 0% 5%; /* Very dark background */
+    --background: 0 0% 0%; /* Pure black background */
     --foreground: 0 0% 95%; /* Light text */
     --card: 0 0% 8%; /* Dark cards */
     --card-foreground: 0 0% 95%;

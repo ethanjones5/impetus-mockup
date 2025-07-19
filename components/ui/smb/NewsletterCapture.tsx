@@ -137,7 +137,7 @@ export const NewsletterCapture = ({
 
   if (layout === "inline") {
     return (
-      <section className={`py-16 bg-slate-50 dark:bg-slate-900 ${className}`}>
+      <section className={`py-16 bg-slate-50 dark:bg-black ${className}`}>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <Bell className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-6" />

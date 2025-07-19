@@ -2,153 +2,195 @@
 
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Phone, Mail, MapPin, Clock, MessageCircle, Calendar } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Phone, Mail, MapPin, Clock, ExternalLink } from "lucide-react"
 
-export interface ContactMethod {
-  type: "phone" | "email" | "address" | "hours" | "chat" | "appointment"
+interface ContactMethod {
+  type: "phone" | "email" | "address" | "hours"
   label: string
   value: string
   href?: string
   icon?: boolean
 }
 
-export interface ContactCardProps {
+interface CTA {
+  text: string
+  href: string
+}
+
+interface EmergencyContact {
+  label: string
+  value: string
+  href: string
+}
+
+interface ContactCardProps {
   title?: string
   subtitle?: string
   contactMethods: ContactMethod[]
-  primaryCTA?: {
-    text: string
-    href: string
-  }
-  secondaryCTA?: {
-    text: string
-    href: string
-  }
-  emergencyContact?: {
-    label: string
-    value: string
-    href?: string
-  }
+  primaryCTA?: CTA
+  secondaryCTA?: CTA
+  emergencyContact?: EmergencyContact
   showMap?: boolean
   mapEmbedUrl?: string
   className?: string
 }
 
-export const ContactCard = ({
+const getIcon = (type: ContactMethod["type"]) => {
+  const iconClass = "h-5 w-5 text-gold-400"
+  switch (type) {
+    case "phone": return <Phone className={iconClass} />
+    case "email": return <Mail className={iconClass} />
+    case "address": return <MapPin className={iconClass} />
+    case "hours": return <Clock className={iconClass} />
+    default: return <Phone className={iconClass} />
+  }
+}
+
+export function ContactCard({
   title = "Get In Touch",
-  subtitle = "Ready to get started? Contact us today for a free consultation.",
+  subtitle = "Ready to get started? Contact us today",
   contactMethods,
-  primaryCTA = { text: "Call Now", href: "tel:555-123-4567" },
-  secondaryCTA = { text: "Send Email", href: "mailto:info@company.com" },
+  primaryCTA,
+  secondaryCTA,
   emergencyContact,
   showMap = false,
   mapEmbedUrl,
   className = ""
-}: ContactCardProps) => {
-  const getIcon = (type: string) => {
-    switch (type) {
-      case "phone": return <Phone className="h-5 w-5" />
-      case "email": return <Mail className="h-5 w-5" />
-      case "address": return <MapPin className="h-5 w-5" />
-      case "hours": return <Clock className="h-5 w-5" />
-      case "chat": return <MessageCircle className="h-5 w-5" />
-      case "appointment": return <Calendar className="h-5 w-5" />
-      default: return <Phone className="h-5 w-5" />
-    }
-  }
-
+}: ContactCardProps) {
   return (
-    <section className={`py-16 bg-slate-50 dark:bg-slate-900 ${className}`}>
+    <section className={`py-16 bg-impetus-gray-900 ${className}`}>
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               {title}
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300">
+            <p className="text-lg md:text-xl text-impetus-gray-300 max-w-2xl mx-auto">
               {subtitle}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Contact Information */}
-            <Card className="p-8 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
-              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
-                Contact Information
-              </h3>
-              
-              <div className="space-y-4 mb-8">
-                {contactMethods.map((method, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-gold-100 dark:bg-gold-900 rounded-full flex items-center justify-center">
-                      <div className="text-gold-600 dark:text-gold-400">
-                        {getIcon(method.type)}
+            <div className="space-y-6">
+              {/* Emergency Contact Banner */}
+              {emergencyContact && (
+                <Card className="p-6 bg-gradient-to-r from-red-600 to-red-700 border-red-500">
+                  <div className="flex items-center justify-between text-white">
+                    <div>
+                      <div className="font-semibold text-lg mb-1">
+                        {emergencyContact.label}
+                      </div>
+                      <div className="text-red-100">
+                        Priority access for urgent needs
                       </div>
                     </div>
-                    <div>
-                      <div className="font-medium text-slate-900 dark:text-white">
-                        {method.label}
-                      </div>
-                      {method.href ? (
-                        <a 
-                          href={method.href}
-                          className="text-gold-600 dark:text-gold-400 hover:underline"
-                        >
-                          {method.value}
-                        </a>
-                      ) : (
-                        <div className="text-slate-600 dark:text-slate-300">
-                          {method.value}
+                    <Button 
+                      variant="outline" 
+                      size="lg"
+                      className="border-white text-white hover:bg-white hover:text-red-600"
+                      asChild
+                    >
+                      <a href={emergencyContact.href}>
+                        <Phone className="h-5 w-5 mr-2" />
+                        {emergencyContact.value}
+                      </a>
+                    </Button>
+                  </div>
+                </Card>
+              )}
+
+              {/* Contact Methods */}
+              <Card className="p-6 bg-impetus-gray-800 border-impetus-gray-700">
+                <div className="space-y-6">
+                  {contactMethods.map((method, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      {method.icon && getIcon(method.type)}
+                      <div className="flex-1">
+                        <div className="font-medium text-white mb-1">
+                          {method.label}
                         </div>
+                        {method.href ? (
+                          <a 
+                            href={method.href}
+                            className="text-impetus-gray-300 hover:text-gold-400 transition-colors"
+                            target={method.type === "address" ? "_blank" : undefined}
+                            rel={method.type === "address" ? "noopener noreferrer" : undefined}
+                          >
+                            {method.value}
+                            {method.type === "address" && (
+                              <ExternalLink className="h-4 w-4 ml-1 inline-block" />
+                            )}
+                          </a>
+                        ) : (
+                          <div className="text-impetus-gray-300">
+                            {method.value}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA Buttons */}
+                {(primaryCTA || secondaryCTA) && (
+                  <div className="border-t border-impetus-gray-700 pt-6 mt-6">
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      {primaryCTA && (
+                        <Button className="bg-gold-400 hover:bg-gold-500 text-impetus-black font-semibold flex-1" asChild>
+                          <a href={primaryCTA.href}>
+                            {primaryCTA.text}
+                          </a>
+                        </Button>
+                      )}
+                      {secondaryCTA && (
+                        <Button variant="outline" className="border-impetus-gray-600 text-white hover:bg-impetus-gray-700 flex-1" asChild>
+                          <a href={secondaryCTA.href}>
+                            {secondaryCTA.text}
+                          </a>
+                        </Button>
                       )}
                     </div>
                   </div>
-                ))}
-              </div>
+                )}
+              </Card>
 
-              {/* Emergency Contact */}
-              {emergencyContact && (
-                <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-6">
-                  <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
-                    <div className="font-medium text-red-900 dark:text-red-100 mb-1">
-                      {emergencyContact.label}
-                    </div>
-                    {emergencyContact.href ? (
-                      <a 
-                        href={emergencyContact.href}
-                        className="text-red-600 dark:text-red-400 font-semibold hover:underline"
-                      >
-                        {emergencyContact.value}
-                      </a>
-                    ) : (
-                      <div className="text-red-600 dark:text-red-400 font-semibold">
-                        {emergencyContact.value}
-                      </div>
-                    )}
+              {/* Additional Info */}
+              <Card className="p-6 bg-impetus-gray-800 border-impetus-gray-700">
+                <h3 className="font-semibold text-white mb-4">
+                  Why Choose Us?
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-gold-400 rounded-full mr-3"></div>
+                    <span className="text-impetus-gray-300 text-sm">Licensed & fully insured</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-gold-400 rounded-full mr-3"></div>
+                    <span className="text-impetus-gray-300 text-sm">Free quotes & consultations</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-gold-400 rounded-full mr-3"></div>
+                    <span className="text-impetus-gray-300 text-sm">Satisfaction guaranteed</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-gold-400 rounded-full mr-3"></div>
+                    <span className="text-impetus-gray-300 text-sm">Local Toronto/GTA experts</span>
                   </div>
                 </div>
-              )}
+              </Card>
+            </div>
 
-              {/* Action Buttons */}
-              <div className="space-y-3">
-                <Button size="lg" className="w-full" asChild>
-                  <a href={primaryCTA.href}>{primaryCTA.text}</a>
-                </Button>
-                <Button size="lg" variant="outline" className="w-full" asChild>
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
-                </Button>
-              </div>
-            </Card>
-
-            {/* Map or Additional Info */}
-            <Card className="p-8 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+            {/* Map */}
+            <div className="lg:sticky lg:top-6">
               {showMap && mapEmbedUrl ? (
-                <div>
-                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
-                    Find Us
+                <Card className="p-6 bg-impetus-gray-800 border-impetus-gray-700">
+                  <h3 className="font-semibold text-white mb-4">
+                    Our Service Area
                   </h3>
-                  <div className="w-full h-64 bg-slate-200 dark:bg-slate-700 rounded-lg overflow-hidden">
+                  <div className="aspect-video rounded-lg overflow-hidden bg-impetus-gray-700">
                     <iframe
                       src={mapEmbedUrl}
                       width="100%"
@@ -157,47 +199,38 @@ export const ContactCard = ({
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Business Location"
-                    />
+                      title="Service Area Map"
+                    ></iframe>
                   </div>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 mt-4">
-                    Click the map above for directions and more details.
-                  </p>
-                </div>
+                  <div className="mt-4">
+                    <Badge variant="secondary" className="bg-gold-100 text-gold-800 dark:bg-gold-900 dark:text-gold-200">
+                      Serving Toronto & GTA
+                    </Badge>
+                  </div>
+                </Card>
               ) : (
-                <div>
-                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
-                    Why Choose Us?
+                <Card className="p-6 bg-impetus-gray-800 border-impetus-gray-700">
+                  <h3 className="font-semibold text-white mb-4">
+                    Service Areas
                   </h3>
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-gold-600 dark:bg-gold-400 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-slate-600 dark:text-slate-300">
-                        Fast response times - we typically respond within 2 hours
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-gold-600 dark:bg-gold-400 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-slate-600 dark:text-slate-300">
-                        Local business with deep community knowledge
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-gold-600 dark:bg-gold-400 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-slate-600 dark:text-slate-300">
-                        Licensed, insured, and fully certified professionals
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-gold-600 dark:bg-gold-400 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-slate-600 dark:text-slate-300">
-                        100% satisfaction guarantee on all our work
-                      </span>
-                    </li>
-                  </ul>
-                </div>
+                  <div className="space-y-2">
+                    <div className="text-impetus-gray-300 text-sm">• Toronto</div>
+                    <div className="text-impetus-gray-300 text-sm">• North York</div>
+                    <div className="text-impetus-gray-300 text-sm">• Scarborough</div>
+                    <div className="text-impetus-gray-300 text-sm">• Etobicoke</div>
+                    <div className="text-impetus-gray-300 text-sm">• Mississauga</div>
+                    <div className="text-impetus-gray-300 text-sm">• Brampton</div>
+                    <div className="text-impetus-gray-300 text-sm">• Markham</div>
+                    <div className="text-impetus-gray-300 text-sm">• Richmond Hill</div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-impetus-gray-700">
+                    <p className="text-xs text-impetus-gray-400">
+                      Don&apos;t see your area? Call us - we may still be able to help!
+                    </p>
+                  </div>
+                </Card>
               )}
-            </Card>
+            </div>
           </div>
         </div>
       </div>

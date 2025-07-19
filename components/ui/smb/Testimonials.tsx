@@ -1,319 +1,212 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Star, Quote, MapPin, Calendar } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Star, Quote, ArrowLeft, ArrowRight } from "lucide-react"
+import { useState } from "react"
 
-export interface Testimonial {
+interface Testimonial {
   name: string
   location?: string
-  serviceType?: string
   rating: number
   comment: string
   date?: string
-  image?: string
-  projectDetails?: string
-  beforeAfter?: {
-    before?: string
-    after?: string
-  }
+  jobTitle?: string
+  company?: string
 }
 
-export interface TestimonialsProps {
+interface TestimonialsProps {
   title?: string
   subtitle?: string
   testimonials: Testimonial[]
-  layout?: "grid" | "carousel" | "featured"
-  showImages?: boolean
-  showProjectDetails?: boolean
-  showBeforeAfter?: boolean
+  showNavigation?: boolean
+  layout?: "carousel" | "grid"
+  maxVisible?: number
   className?: string
 }
 
-export const Testimonials = ({
-  title = "What Our Customers Say",
-  subtitle = "Real feedback from real customers in our community",
-  testimonials,
-  layout = "grid",
-  showImages = true,
-  showProjectDetails = false,
-  showBeforeAfter = false,
-  className = ""
-}: TestimonialsProps) => {
-  const renderStars = (rating: number) => (
+const renderStars = (rating: number) => {
+  return (
     <div className="flex">
       {[1, 2, 3, 4, 5].map((star) => (
         <Star
           key={star}
           className={`h-4 w-4 ${
             star <= rating 
-              ? "text-yellow-400 fill-current" 
-              : "text-slate-300 dark:text-slate-600"
+              ? "text-gold-400 fill-current" 
+              : "text-impetus-gray-300"
           }`}
         />
       ))}
     </div>
   )
+}
 
-  const featuredTestimonial = testimonials.find(t => t.rating === 5) || testimonials[0]
-  const regularTestimonials = testimonials.filter(t => t !== featuredTestimonial)
+export function Testimonials({
+  title = "What Our Customers Say",
+  subtitle = "Real feedback from satisfied customers",
+  testimonials,
+  showNavigation = false,
+  layout = "grid",
+  maxVisible = 3,
+  className = ""
+}: TestimonialsProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  if (layout === "featured") {
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
+
+  const visibleTestimonials = layout === "carousel" 
+    ? testimonials.slice(currentIndex, currentIndex + maxVisible)
+    : testimonials.slice(0, maxVisible)
+
+  if (layout === "carousel" && testimonials.length === 1) {
     return (
-      <section className={`py-16 bg-gold-50 dark:bg-gold-900/20 ${className}`}>
+      <section className={`py-16 bg-impetus-gray-900 ${className}`}>
         <div className="container mx-auto px-4">
-          {/* Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               {title}
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <p className="text-lg text-impetus-gray-300 max-w-2xl mx-auto">
               {subtitle}
             </p>
           </div>
 
-          {/* Featured Testimonial */}
-          {featuredTestimonial && (
-            <div className="max-w-4xl mx-auto mb-16">
-              <Card className="p-8 lg:p-12 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-center">
-                <Quote className="h-12 w-12 text-gold-600 dark:text-gold-400 mx-auto mb-6" />
-                
-                <blockquote className="text-xl lg:text-2xl text-slate-700 dark:text-slate-300 mb-8 italic">
-                  &ldquo;{featuredTestimonial.comment}&rdquo;
-                </blockquote>
-                
-                <div className="flex items-center justify-center gap-4 mb-6">
-                  {showImages && featuredTestimonial.image && (
-                    <img 
-                      src={featuredTestimonial.image} 
-                      alt={featuredTestimonial.name}
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
-                  )}
-                  <div className="text-center">
-                    <div className="font-semibold text-slate-900 dark:text-white">
-                      {featuredTestimonial.name}
-                    </div>
-                    {featuredTestimonial.location && (
-                      <div className="text-slate-600 dark:text-slate-300 text-sm flex items-center justify-center gap-1">
-                        <MapPin className="h-3 w-3" />
-                        {featuredTestimonial.location}
-                      </div>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="flex items-center justify-center gap-4">
-                  {renderStars(featuredTestimonial.rating)}
-                  <span className="text-slate-600 dark:text-slate-300">
-                    {featuredTestimonial.rating}/5 stars
-                  </span>
-                </div>
-                
-                {featuredTestimonial.serviceType && (
-                  <div className="mt-4">
-                    <span className="inline-block bg-gold-100 dark:bg-gold-900 text-gold-800 dark:text-gold-200 px-3 py-1 rounded-full text-sm">
-                      {featuredTestimonial.serviceType}
-                    </span>
-                  </div>
+          <div className="max-w-4xl mx-auto">
+            <Card className="p-8 lg:p-12 bg-impetus-gray-800 border-impetus-gray-700 text-center">
+              <Quote className="h-12 w-12 text-gold-400 mx-auto mb-6" />
+              <p className="text-lg md:text-xl text-impetus-gray-200 mb-6 italic">
+                &ldquo;{testimonials[0].comment}&rdquo;
+              </p>
+              <div className="flex justify-center mb-4">
+                {renderStars(testimonials[0].rating)}
+              </div>
+              <div className="border-t border-impetus-gray-700 pt-6">
+                <h4 className="font-semibold text-white text-lg">
+                  {testimonials[0].name}
+                </h4>
+                {testimonials[0].location && (
+                  <p className="text-impetus-gray-400 text-sm">
+                    {testimonials[0].location}
+                  </p>
                 )}
-              </Card>
-            </div>
-          )}
-
-          {/* Regular Testimonials Grid */}
-          {regularTestimonials.length > 0 && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {regularTestimonials.slice(0, 6).map((testimonial, index) => (
-                <Card key={index} className="p-6 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-                  <div className="flex items-start gap-2 mb-4">
-                    {renderStars(testimonial.rating)}
-                    <span className="text-slate-600 dark:text-slate-300 text-sm ml-2">
-                      {testimonial.rating}/5
-                    </span>
-                  </div>
-                  
-                  <blockquote className="text-slate-600 dark:text-slate-300 mb-4 italic">
-                    &ldquo;{testimonial.comment}&rdquo;
-                  </blockquote>
-                  
-                  <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
-                    <div className="flex items-center gap-3">
-                      {showImages && testimonial.image && (
-                        <img 
-                          src={testimonial.image} 
-                          alt={testimonial.name}
-                          className="w-10 h-10 rounded-full object-cover"
-                        />
-                      )}
-                      <div className="flex-1">
-                        <div className="font-medium text-slate-900 dark:text-white text-sm">
-                          {testimonial.name}
-                        </div>
-                        <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
-                          {testimonial.location && (
-                            <span className="flex items-center gap-1">
-                              <MapPin className="h-3 w-3" />
-                              {testimonial.location}
-                            </span>
-                          )}
-                          {testimonial.date && (
-                            <span className="flex items-center gap-1">
-                              <Calendar className="h-3 w-3" />
-                              {testimonial.date}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    {testimonial.serviceType && (
-                      <div className="mt-3">
-                        <span className="inline-block bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-1 rounded text-xs">
-                          {testimonial.serviceType}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
+                {testimonials[0].jobTitle && (
+                  <p className="text-impetus-gray-400 text-sm">
+                    {testimonials[0].jobTitle}
+                    {testimonials[0].company && ` at ${testimonials[0].company}`}
+                  </p>
+                )}
+              </div>
+            </Card>
+          </div>
         </div>
       </section>
     )
   }
 
-  // Grid layout (default)
-  const gridCols = testimonials.length <= 2 ? "md:grid-cols-2" : 
-                  testimonials.length === 3 ? "md:grid-cols-2 lg:grid-cols-3" : 
-                  "md:grid-cols-2 lg:grid-cols-3"
-
   return (
-    <section className={`py-16 bg-white dark:bg-slate-900 ${className}`}>
+    <section className={`py-16 bg-impetus-gray-900 ${className}`}>
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {title}
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          <p className="text-lg text-impetus-gray-300 max-w-2xl mx-auto">
             {subtitle}
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className={`grid grid-cols-1 ${gridCols} gap-6`}>
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="p-6 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-              {/* Rating */}
-              <div className="flex items-center gap-2 mb-4">
-                {renderStars(testimonial.rating)}
-                <span className="text-slate-600 dark:text-slate-300 text-sm">
-                  {testimonial.rating}/5
-                </span>
-              </div>
-              
-              {/* Comment */}
-              <blockquote className="text-slate-600 dark:text-slate-300 mb-4 italic">
-                &ldquo;{testimonial.comment}&rdquo;
-              </blockquote>
-              
-              {/* Project Details */}
-              {showProjectDetails && testimonial.projectDetails && (
-                <div className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg mb-4">
-                  <div className="text-sm text-slate-600 dark:text-slate-300">
-                    <strong>Project:</strong> {testimonial.projectDetails}
-                  </div>
-                </div>
-              )}
-              
-              {/* Before/After Images */}
-              {showBeforeAfter && testimonial.beforeAfter && (
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  {testimonial.beforeAfter.before && (
-                    <div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">Before</div>
-                      <img 
-                        src={testimonial.beforeAfter.before} 
-                        alt="Before"
-                        className="w-full h-20 object-cover rounded"
-                      />
-                    </div>
-                  )}
-                  {testimonial.beforeAfter.after && (
-                    <div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">After</div>
-                      <img 
-                        src={testimonial.beforeAfter.after} 
-                        alt="After"
-                        className="w-full h-20 object-cover rounded"
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-              
-              {/* Customer Info */}
-              <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
-                <div className="flex items-center gap-3">
-                  {showImages && testimonial.image && (
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                  )}
+        <div className="relative">
+          {/* Navigation buttons for carousel */}
+          {layout === "carousel" && showNavigation && testimonials.length > 1 && (
+            <>
+              <button
+                onClick={prevTestimonial}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white dark:bg-impetus-gray-800 rounded-full shadow-lg hover:bg-impetus-gray-100 dark:hover:bg-impetus-gray-700 transition-colors"
+                aria-label="Previous testimonial"
+              >
+                <ArrowLeft className="h-5 w-5 text-impetus-gray-600 dark:text-impetus-gray-300" />
+              </button>
+              <button
+                onClick={nextTestimonial}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white dark:bg-impetus-gray-800 rounded-full shadow-lg hover:bg-impetus-gray-100 dark:hover:bg-impetus-gray-700 transition-colors"
+                aria-label="Next testimonial"
+              >
+                <ArrowRight className="h-5 w-5 text-impetus-gray-600 dark:text-impetus-gray-300" />
+              </button>
+            </>
+          )}
+
+          {/* Testimonials Grid/Carousel */}
+          <div className={`grid gap-6 ${
+            layout === "carousel" 
+              ? "grid-cols-1 lg:grid-cols-2 xl:grid-cols-3" 
+              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          }`}>
+            {visibleTestimonials.map((testimonial, index) => (
+              <Card key={index} className="p-6 bg-impetus-gray-800 border-impetus-gray-700 hover:border-gold-500 transition-colors">
+                <div className="flex items-start gap-3 mb-4">
+                  <Quote className="h-5 w-5 text-gold-400 mt-1 flex-shrink-0" />
                   <div className="flex-1">
-                    <div className="font-medium text-slate-900 dark:text-white text-sm">
-                      {testimonial.name}
+                    <div className="flex items-center gap-2 mb-2">
+                      {renderStars(testimonial.rating)}
                     </div>
-                    <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
-                      {testimonial.location && (
-                        <span className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
-                          {testimonial.location}
-                        </span>
-                      )}
-                      {testimonial.date && (
-                        <span className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {testimonial.date}
-                        </span>
-                      )}
-                    </div>
+                    <p className="text-impetus-gray-200 text-sm mb-3">
+                      &ldquo;{testimonial.comment}&rdquo;
+                    </p>
                   </div>
                 </div>
                 
-                {testimonial.serviceType && (
-                  <div className="mt-3">
-                    <span className="inline-block bg-gold-100 dark:bg-gold-900 text-gold-800 dark:text-gold-200 px-2 py-1 rounded text-xs">
-                      {testimonial.serviceType}
-                    </span>
+                <div className="border-t border-impetus-gray-700 pt-3">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <div className="font-medium text-white text-sm">
+                        {testimonial.name}
+                      </div>
+                      {testimonial.location && (
+                        <div className="text-xs text-impetus-gray-400">
+                          {testimonial.location}
+                        </div>
+                      )}
+                      {testimonial.jobTitle && (
+                        <div className="text-xs text-impetus-gray-400">
+                          {testimonial.jobTitle}
+                          {testimonial.company && ` at ${testimonial.company}`}
+                        </div>
+                      )}
+                    </div>
+                    {testimonial.date && (
+                      <div className="text-xs text-impetus-gray-400">
+                        {testimonial.date}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </Card>
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-12">
-          <p className="text-slate-600 dark:text-slate-300 mb-4">
-            Ready to join our satisfied customers?
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="/contact" 
-              className="inline-flex items-center justify-center px-6 py-3 bg-gold-600 text-white rounded-lg hover:bg-gold-700 transition-colors font-medium"
-            >
-              Get Your Free Quote
-            </a>
-            <a 
-              href="/reviews" 
-              className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-medium"
-            >
-              Read More Reviews
-            </a>
+                </div>
+              </Card>
+            ))}
           </div>
+
+          {/* Carousel dots */}
+          {layout === "carousel" && testimonials.length > 1 && (
+            <div className="flex justify-center mt-8 gap-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentIndex ? "bg-gold-400" : "bg-impetus-gray-600"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

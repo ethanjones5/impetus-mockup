@@ -41,7 +41,7 @@ const defaultSiteConfig: SiteConfig = {
       href: "/",
     },
     {
-      title: "Handyman Services",
+      title: "Home Care Services",
       href: "/handyman",
     },
     {

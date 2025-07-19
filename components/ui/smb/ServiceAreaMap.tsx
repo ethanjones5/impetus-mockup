@@ -1,190 +1,225 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { MapPin, Phone, Clock, Check } from "lucide-react"
+import { MapPin, Phone, Clock, Star, CheckCircle } from "lucide-react"
 
-export interface ServiceArea {
+interface ServiceArea {
   name: string
-  description?: string
-  responseTime?: string
-  featured?: boolean
+  description: string
+  coverage: string[]
+  serviceLevel: "priority" | "standard" | "extended"
+  testimonialCount: number
+  rating: number
 }
 
-export interface ServiceAreaMapProps {
+interface ServiceAreaMapProps {
   title?: string
   subtitle?: string
+  areas: ServiceArea[]
+  showMap?: boolean
   mapEmbedUrl?: string
-  serviceAreas: ServiceArea[]
-  contact?: {
+  contactInfo?: {
     phone: string
-    hours: string
+    email: string
   }
-  emergencyService?: boolean
   className?: string
 }
 
-export const ServiceAreaMap = ({
-  title = "Our Service Area",
-  subtitle = "We proudly serve these communities with reliable, professional service",
-  mapEmbedUrl,
-  serviceAreas,
-  contact = {
-    phone: "(555) 123-4567",
-    hours: "Mon-Fri 8AM-6PM, Sat 9AM-4PM"
+const serviceLevelColors = {
+  priority: {
+    bg: "bg-green-100 dark:bg-green-900",
+    text: "text-green-800 dark:text-green-200",
+    border: "border-green-200 dark:border-green-800"
   },
-  emergencyService = false,
-  className = ""
-}: ServiceAreaMapProps) => {
-  return (
-    <section className={`py-16 bg-slate-50 dark:bg-slate-900 ${className}`}>
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            {title}
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            {subtitle}
-          </p>
-        </div>
+  standard: {
+    bg: "bg-blue-100 dark:bg-blue-900", 
+    text: "text-blue-800 dark:text-blue-200",
+    border: "border-blue-200 dark:border-blue-800"
+  },
+  extended: {
+    bg: "bg-amber-100 dark:bg-amber-900",
+    text: "text-amber-800 dark:text-amber-200", 
+    border: "border-amber-200 dark:border-amber-800"
+  }
+}
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Map */}
-          <div className="lg:col-span-2">
-            <Card className="overflow-hidden bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
-              {mapEmbedUrl ? (
-                <div className="w-full h-96">
-                  <iframe
-                    src={mapEmbedUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Service Area Map"
-                  />
-                </div>
-              ) : (
-                <div className="w-full h-96 bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-slate-400 mx-auto mb-4" />
-                    <p className="text-slate-600 dark:text-slate-300">
-                      Interactive map would be displayed here
-                    </p>
-                  </div>
-                </div>
-              )}
-              
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                  Service Coverage
-                </h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm text-slate-600 dark:text-slate-300">Primary Service Area</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <span className="text-sm text-slate-600 dark:text-slate-300">Extended Service Area</span>
-                  </div>
-                </div>
-              </div>
-            </Card>
+export function ServiceAreaMap({
+  title = "Our Service Areas",
+  subtitle = "Providing reliable home services across Toronto and the GTA",
+  areas,
+  showMap = true,
+  mapEmbedUrl,
+  contactInfo = {
+    phone: "(416) 123-4567",
+    email: "info@impetushomeservices.ca"
+  },
+  className = ""
+}: ServiceAreaMapProps) {
+  return (
+    <section className={`py-16 bg-impetus-gray-900 ${className}`}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              {title}
+            </h2>
+            <p className="text-lg text-impetus-gray-300 max-w-2xl mx-auto">
+              {subtitle}
+            </p>
           </div>
 
-          {/* Service Areas List & Contact */}
-          <div className="space-y-6">
-            {/* Contact Card */}
-            <Card className="p-6 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                Contact Us
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Service Areas List */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-white mb-4">
+                Coverage Areas
               </h3>
               
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  <div>
-                    <div className="text-sm text-slate-500 dark:text-slate-400">Call us now</div>
-                    <a href={`tel:${contact.phone}`} className="font-semibold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
-                      {contact.phone}
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  <div>
-                    <div className="text-sm text-slate-500 dark:text-slate-400">Business Hours</div>
-                    <div className="text-slate-900 dark:text-white">
-                      {contact.hours}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {emergencyService && (
-                <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg">
-                    <div className="text-red-900 dark:text-red-100 font-medium text-sm mb-1">
-                      24/7 Emergency Service
-                    </div>
-                    <div className="text-red-700 dark:text-red-300 text-sm">
-                      Available for urgent situations
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <Button className="w-full mt-4" asChild>
-                <a href={`tel:${contact.phone}`}>Call Now</a>
-              </Button>
-            </Card>
-
-            {/* Service Areas */}
-            <Card className="p-6 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                Areas We Serve
-              </h3>
-              
-              <div className="space-y-3">
-                {serviceAreas.map((area, index) => (
-                  <div key={index} className={`p-3 rounded-lg ${area.featured ? 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800' : 'bg-slate-50 dark:bg-slate-700'}`}>
-                    <div className="flex items-start gap-3">
-                      <Check className={`h-4 w-4 mt-0.5 ${area.featured ? 'text-blue-600 dark:text-blue-400' : 'text-green-600 dark:text-green-400'}`} />
-                      <div className="flex-1">
-                        <div className={`font-medium ${area.featured ? 'text-blue-900 dark:text-blue-100' : 'text-slate-900 dark:text-white'}`}>
+              {areas.map((area, index) => {
+                const colorScheme = serviceLevelColors[area.serviceLevel]
+                return (
+                  <Card key={index} className={`p-6 bg-impetus-gray-800 border-impetus-gray-700 hover:border-gold-500 transition-colors ${colorScheme.border}`}>
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <MapPin className="h-5 w-5 text-gold-400" />
+                        <h4 className="text-lg font-semibold text-white">
                           {area.name}
-                          {area.featured && (
-                            <span className="ml-2 text-xs bg-blue-600 text-white px-2 py-1 rounded">
-                              Primary
-                            </span>
-                          )}
+                        </h4>
+                      </div>
+                      <Badge className={`${colorScheme.bg} ${colorScheme.text}`}>
+                        {area.serviceLevel === "priority" ? "Priority Service" : 
+                         area.serviceLevel === "standard" ? "Standard Service" : 
+                         "Extended Service"}
+                      </Badge>
+                    </div>
+                    
+                    <p className="text-impetus-gray-300 mb-4">
+                      {area.description}
+                    </p>
+                    
+                    <div className="mb-4">
+                      <div className="text-sm font-medium text-white mb-2">Coverage includes:</div>
+                      <div className="flex flex-wrap gap-2">
+                        {area.coverage.map((location, locationIndex) => (
+                          <span key={locationIndex} className="text-xs bg-impetus-gray-700 text-impetus-gray-300 px-2 py-1 rounded">
+                            {location}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between pt-4 border-t border-impetus-gray-700">
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-1">
+                          <Star className="h-4 w-4 text-gold-400 fill-current" />
+                          <span className="text-sm text-white">{area.rating}</span>
                         </div>
-                        {area.description && (
-                          <div className={`text-sm mt-1 ${area.featured ? 'text-blue-700 dark:text-blue-300' : 'text-slate-600 dark:text-slate-300'}`}>
-                            {area.description}
-                          </div>
-                        )}
-                        {area.responseTime && (
-                          <div className={`text-xs mt-1 ${area.featured ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-slate-400'}`}>
-                            Response time: {area.responseTime}
-                          </div>
-                        )}
+                        <div className="text-sm text-impetus-gray-300">
+                          {area.testimonialCount} reviews
+                        </div>
+                      </div>
+                      
+                      <div className="text-sm text-impetus-gray-300">
+                        Next-Day Service Available
+                      </div>
+                    </div>
+                  </Card>
+                )
+              })}
+              
+              {/* Contact CTA */}
+              <Card className="p-6 bg-impetus-gray-800 border-impetus-gray-700">
+                <h4 className="text-lg font-semibold text-white mb-4">
+                  Don&apos;t See Your Area?
+                </h4>
+                <p className="text-impetus-gray-300 mb-4">
+                  We&apos;re always expanding our service coverage. Contact us to see if we can help with your location.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button className="bg-gold-400 hover:bg-gold-500 text-impetus-black font-semibold" asChild>
+                    <a href={`tel:${contactInfo.phone}`}>
+                      <Phone className="h-4 w-4 mr-2" />
+                      Call {contactInfo.phone}
+                    </a>
+                  </Button>
+                  <Button variant="outline" className="border-impetus-gray-600 text-white hover:bg-impetus-gray-700" asChild>
+                    <a href={`mailto:${contactInfo.email}`}>
+                      Email Us
+                    </a>
+                  </Button>
+                </div>
+              </Card>
+            </div>
+
+            {/* Map */}
+            <div className="lg:sticky lg:top-6">
+              {showMap && mapEmbedUrl ? (
+                <Card className="p-6 bg-impetus-gray-800 border-impetus-gray-700">
+                  <h3 className="text-lg font-semibold text-white mb-4">
+                    Service Coverage Map
+                  </h3>
+                  <div className="aspect-video rounded-lg overflow-hidden bg-impetus-gray-700 mb-4">
+                    <iframe
+                      src={mapEmbedUrl}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Service Area Coverage Map"
+                    ></iframe>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-sm text-impetus-gray-300">Licensed & insured across all areas</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-sm text-impetus-gray-300">Member priority access available</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-sm text-impetus-gray-300">Free quotes in all service areas</span>
+                    </div>
+                  </div>
+                </Card>
+              ) : (
+                <Card className="p-6 bg-impetus-gray-800 border-impetus-gray-700">
+                  <h3 className="text-lg font-semibold text-white mb-4">
+                    Service Excellence
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <Clock className="h-5 w-5 text-gold-400 mt-0.5" />
+                      <div>
+                        <div className="font-medium text-white text-sm">Reliable Scheduling</div>
+                        <div className="text-xs text-impetus-gray-300">Convenient appointment times that work for you</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-gold-400 mt-0.5" />
+                      <div>
+                        <div className="font-medium text-white text-sm">Quality Guarantee</div>
+                        <div className="text-xs text-impetus-gray-300">All work backed by our satisfaction promise</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Star className="h-5 w-5 text-gold-400 mt-0.5" />
+                      <div>
+                        <div className="font-medium text-white text-sm">Proven Experience</div>
+                        <div className="text-xs text-impetus-gray-300">Over 12 years serving Toronto homeowners</div>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-              
-              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
-                <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Don&rsquo;t see your area listed? <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">Contact us</a> to check if we can serve you.
-                </p>
-              </div>
-            </Card>
+                </Card>
+              )}
+            </div>
           </div>
         </div>
       </div>

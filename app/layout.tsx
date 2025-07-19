@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/providers/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Impetus Home Services - Expert Handyman & Renovation Services in Toronto",
-  description: "Professional home care, emergency handyman services, and quality renovations in Toronto/GTA. Join our Home Care Plan for priority booking and exclusive member benefits.",
+  title: "Impetus Home Services - Expert Home Care & Renovation Services in Toronto",
+  description: "Professional home care, maintenance expertise, and quality renovations in Toronto/GTA. Join our Home Care Plan for priority access and exclusive member benefits.",
 };
 
 export default function RootLayout({

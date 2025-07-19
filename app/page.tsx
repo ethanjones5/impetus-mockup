@@ -47,7 +47,7 @@ export default function HomePage() {
 
           {/* Split Path Cards */}
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Handyman Services Path */}
+            {/* Home Care Services Path */}
             <Card className="group relative overflow-hidden border-2 border-gold-200 hover:border-gold-400 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl bg-white/80 dark:bg-impetus-gray-800/80 backdrop-blur-sm">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
@@ -56,10 +56,10 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-impetus-black dark:text-white">
-                      Home Care & Handyman
+                      Home Care & Maintenance
                     </h3>
                     <p className="text-impetus-gray-600 dark:text-impetus-gray-300">
-                      Emergency repairs • Maintenance • Member services
+                      Expert repairs • Preventative care • Member services
                     </p>
                   </div>
                 </div>
@@ -67,7 +67,7 @@ export default function HomePage() {
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center">
                     <Phone className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">24/7 Emergency Hotline</span>
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Priority Access to Expert Help</span>
                   </div>
                   <div className="flex items-center">
                     <Shield className="h-5 w-5 text-gold-600 mr-3" />
@@ -75,7 +75,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center">
                     <Clock className="h-5 w-5 text-gold-600 mr-3" />
-                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Same-Day Service Available</span>
+                    <span className="text-impetus-gray-700 dark:text-impetus-gray-300">Next-Day Service Available</span>
                   </div>
                   <div className="flex items-center">
                     <Star className="h-5 w-5 text-gold-600 mr-3" />
@@ -85,7 +85,7 @@ export default function HomePage() {
 
                 <Link href="/handyman">
                   <Button className="w-full group-hover:bg-gold-500 bg-gold-400 hover:bg-gold-500 text-impetus-black font-semibold text-lg py-6">
-                    Explore Handyman Services
+                    Explore Home Care Services
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
@@ -145,8 +145,8 @@ export default function HomePage() {
               <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Happy Clients</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">24/7</div>
-              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Emergency Service</div>
+              <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">Priority</div>
+              <div className="text-sm text-impetus-gray-600 dark:text-impetus-gray-400">Member Access</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-gold-600 dark:text-gold-400">12+</div>
@@ -163,7 +163,7 @@ export default function HomePage() {
       {/* Unified About Section */}
       <AboutUs
         title="About Impetus Home Services"
-        description="Based in Toronto, Impetus Home Services has been the trusted choice for homeowners seeking reliable, professional service for over 12 years. Whether you need emergency repairs, ongoing home maintenance, or a complete renovation, our experienced team delivers quality results with integrity and care."
+        description="Based in Toronto, Impetus Home Services has been the trusted choice for homeowners seeking reliable, professional service for over 12 years. Whether you need expert repairs, ongoing home maintenance, or a complete renovation, our experienced team delivers quality results with integrity and care."
         yearEstablished={2012}
         achievements={[
           {
@@ -173,7 +173,7 @@ export default function HomePage() {
           },
           {
             title: "Expert Team",
-            description: "Skilled tradespeople with 12+ years experience",
+            description: "Skilled technicians with 12+ years experience",
             icon: "users"
           },
           {
@@ -182,16 +182,16 @@ export default function HomePage() {
             icon: "heart"
           },
           {
-            title: "24/7 Service",
-            description: "Emergency response available around the clock",
+            title: "Priority Service",
+            description: "Members receive priority access and exclusive benefits",
             icon: "target"
           }
         ]}
         stats={[
           { label: "Projects Completed", value: "2,500+" },
-          { label: "Emergency Calls This Year", value: "650+" },
+          { label: "Member Satisfaction", value: "98%" },
           { label: "Member Retention Rate", value: "94%" },
-          { label: "Average Response Time", value: "< 2 Hours" }
+          { label: "Years of Excellence", value: "12+" }
         ]}
         mission="To provide exceptional home services that enhance the safety, comfort, and value of every home we touch, while building lasting relationships with our clients throughout the Toronto/GTA community."
         className="py-20 bg-impetus-gray-50 dark:bg-impetus-gray-900"
@@ -207,7 +207,7 @@ export default function HomePage() {
           {
             name: "Michael Chen",
             location: "North York",
-            comment: "The Impetus team saved us during a plumbing emergency. Their member hotline got us help within an hour, and the quality of work was exceptional.",
+            comment: "The Impetus team provided exceptional service during our plumbing emergency. Their member priority access got us help quickly, and the quality of work was outstanding.",
             rating: 5,
             source: "Google"
           },
@@ -235,7 +235,7 @@ export default function HomePage() {
         achievements={[
           { title: "Years in Business", value: "12+", description: "Serving Toronto since 2012" },
           { title: "Projects Completed", value: "2,500+", description: "Satisfied customers" },
-          { title: "Response Time", value: "< 2 Hours", description: "Emergency service" },
+          { title: "Priority Access", value: "Members", description: "Exclusive member benefits" },
           { title: "Customer Rating", value: "4.9/5", description: "Average review score" }
         ]}
         className="py-20"
@@ -283,7 +283,7 @@ export default function HomePage() {
           href: "/membership"
         }}
         emergencyContact={{
-          label: "24/7 Emergency Line",
+          label: "Priority Member Access",
           value: "(416) 123-4567",
           href: "tel:+14161234567"
         }}
