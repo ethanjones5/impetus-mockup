@@ -920,4 +920,342 @@ export function testSMBGenerator() {
   // Use getWebsiteStructureInfo(result) for development debugging
   
   return result
+}
+
+// IMPETUS HOME SERVICES GENERATOR
+export function generateImpetusHomeServices() {
+  const impetusConfig: SiteGenerationConfig = {
+    businessType: 'smb',
+    creativityLevel: 'high',
+    goal: 'trust',
+    companyName: 'Impetus Home Services',
+    industry: 'Home Maintenance',
+    targetAudience: 'Professional homeowners',
+    keyFeatures: [
+      'Licensed & Insured Home Technicians',
+      'Impetus Home Care Plan Membership',
+      'Next-Day Service Available',
+      'Seasonal Home Check-ups',
+      'No Call-Out Fees for Members',
+      'Priority Access Scheduling'
+    ],
+    customRequirements: [
+      'Black and gold professional theme',
+      'Premium positioning',
+      'Membership program focus',
+      'Professional maintenance expert branding'
+    ]
+  }
+
+  // Generate the base structure
+  const baseResult = generateCompleteWebsite(impetusConfig)
+
+  // Create custom content for Impetus Home Services
+  const impetusContent = {
+    // Hero Section
+    hero: {
+      companyName: "Impetus Home Services",
+      tagline: "Protect Your Home. Experience Effortless Maintenance.",
+      description: "Professional home maintenance experts providing peace of mind through reliable service, seasonal care, and our exclusive Home Care Plan membership program.",
+      primaryCTA: { text: "Join Home Care Plan", href: "/membership" },
+      secondaryCTA: { text: "Our Services", href: "/services" },
+      contactInfo: {
+        phone: "(647) 555-HOME",
+        address: "Serving Greater Toronto Area",
+        hours: "Mon-Fri 8AM-6PM"
+      },
+      theme: {
+        background: "bg-gradient-to-br from-black via-slate-900 to-black",
+        accent: "text-gold-500",
+        highlight: "text-gold-400"
+      }
+    },
+
+    // Services Section
+    services: [
+      {
+        title: "Home Health Check",
+        description: "Comprehensive seasonal inspections to identify potential issues before they become costly problems.",
+        features: [
+          "Multi-point home inspection",
+          "Detailed maintenance report",
+          "Priority scheduling for members",
+          "Seasonal preparation services"
+        ],
+        icon: "🏠",
+        ctaText: "Schedule Inspection",
+        popular: false
+      },
+      {
+        title: "Preventative Maintenance",
+        description: "Proactive care to extend the life of your home's systems and prevent unexpected breakdowns.",
+        features: [
+          "HVAC system maintenance",
+          "Plumbing preventative care",
+          "Electrical safety checks",
+          "Weather protection services"
+        ],
+        icon: "🔧",
+        ctaText: "Learn More",
+        popular: true
+      },
+      {
+        title: "Expert Repairs",
+        description: "Professional repair services by licensed home technicians with guaranteed workmanship.",
+        features: [
+          "Licensed maintenance experts",
+          "Quality workmanship guarantee",
+          "Next-day service available",
+          "Transparent pricing"
+        ],
+        icon: "⚡",
+        ctaText: "Request Service",
+        popular: false
+      }
+    ],
+
+    // Membership Section (Impetus Home Care Plan)
+    membership: {
+      title: "Impetus Home Care Plan",
+      subtitle: "Premium membership for the discerning homeowner",
+      description: "Join our exclusive membership program for priority service, seasonal care, and peace of mind protection for your home investment.",
+      benefits: [
+        {
+          title: "Priority Access",
+          description: "Dedicated member hotline with priority scheduling for all service requests",
+          icon: "📞"
+        },
+        {
+          title: "Next-Day Service",
+          description: "Guaranteed next-day service availability for all maintenance and repair needs",
+          icon: "📅"
+        },
+        {
+          title: "No Call-Out Fees",
+          description: "All service calls included in membership - no hidden charges or surprise fees",
+          icon: "💳"
+        },
+        {
+          title: "Seasonal Check-ups",
+          description: "Bi-annual home health inspections to keep your home in optimal condition",
+          icon: "🔍"
+        },
+        {
+          title: "Exclusive Discounts",
+          description: "Member-only pricing on all services and priority access to our maintenance experts",
+          icon: "💰"
+        }
+      ],
+      cta: {
+        text: "Join Home Care Plan",
+        href: "/membership",
+        description: "Starting at $39/month"
+      }
+    },
+
+    // About Section
+    about: {
+      title: "Expert Home Care Since 2015",
+      description: "Impetus Home Services brings professional-grade maintenance expertise to discerning homeowners across the Greater Toronto Area. Our team of licensed home technicians provides the reliability and quality you expect.",
+      stats: [
+        { label: "Years of Excellence", value: "8+" },
+        { label: "Homes Protected", value: "2,500+" },
+        { label: "Care Plan Members", value: "800+" },
+        { label: "Licensed Technicians", value: "12" }
+      ],
+      achievements: [
+        {
+          title: "Licensed Excellence",
+          description: "All technicians fully licensed and continuously trained in latest techniques",
+          icon: "award"
+        },
+        {
+          title: "Quality Guarantee",
+          description: "100% satisfaction guarantee on all workmanship and service",
+          icon: "target"
+        },
+        {
+          title: "Professional Standards",
+          description: "Rigorous quality standards and professional appearance on every visit",
+          icon: "users"
+        },
+        {
+          title: "Community Focused",
+          description: "Proudly serving GTA homeowners with personalized care",
+          icon: "heart"
+        }
+      ]
+    },
+
+    // Testimonials
+    testimonials: [
+      {
+        name: "Sarah Mitchell",
+        role: "Homeowner, North York",
+        content: "The Home Care Plan has been a game-changer. Their maintenance experts caught a potential plumbing issue during our seasonal check-up that could have cost thousands. The priority access is worth every penny.",
+        rating: 5,
+        image: "/testimonials/sarah.jpg"
+      },
+      {
+        name: "David Chen",
+        role: "Property Owner, Mississauga",
+        content: "Professional, reliable, and truly expert service. Their seasonal maintenance program keeps our home in perfect condition. The next-day service guarantee gives us complete peace of mind.",
+        rating: 5,
+        image: "/testimonials/david.jpg"
+      },
+      {
+        name: "Jennifer Adams",
+        role: "Home Care Plan Member",
+        content: "Impetus transformed how we maintain our home. No more worrying about finding reliable technicians or surprise fees. Their proactive approach has saved us money and stress.",
+        rating: 5,
+        image: "/testimonials/jennifer.jpg"
+      }
+    ],
+
+    // Contact Information
+    contact: {
+      title: "Experience Professional Home Care",
+      subtitle: "Ready to protect your home investment with expert maintenance?",
+      contactMethods: [
+        {
+          type: "phone",
+          label: "Priority Access Line",
+          value: "(647) 555-HOME",
+          href: "tel:647-555-4663",
+          description: "For Home Care Plan members"
+        },
+        {
+          type: "phone",
+          label: "New Client Inquiries",
+          value: "(647) 555-INFO",
+          href: "tel:647-555-4636",
+          description: "General information and membership"
+        },
+        {
+          type: "email",
+          label: "Service Requests",
+          value: "service@impetushome.ca",
+          href: "mailto:service@impetushome.ca",
+          description: "Non-urgent service requests"
+        },
+        {
+          type: "address",
+          label: "Service Area",
+          value: "Greater Toronto Area",
+          description: "Serving GTA and surrounding areas"
+        },
+        {
+          type: "hours",
+          label: "Business Hours",
+          value: "Monday - Friday: 8AM - 6PM",
+          description: "Priority Access available for members"
+        }
+      ],
+      primaryCTA: { text: "Join Home Care Plan", href: "/membership" },
+      secondaryCTA: { text: "Schedule Consultation", href: "/contact" }
+    },
+
+    // FAQ Section
+    faq: [
+      {
+        question: "What is the Impetus Home Care Plan?",
+        answer: "Our premium membership program provides priority access to our maintenance experts, next-day service availability, seasonal home check-ups, no call-out fees, and exclusive member discounts. It's designed for homeowners who want proactive, professional home care."
+      },
+      {
+        question: "How quickly can you respond to service requests?",
+        answer: "Home Care Plan members enjoy priority scheduling with next-day service availability. New clients can typically be scheduled within 2-3 business days depending on service requirements."
+      },
+      {
+        question: "Are your technicians licensed and insured?",
+        answer: "Absolutely. All Impetus home technicians are fully licensed, insured, and undergo continuous professional training. We maintain the highest standards of expertise and professionalism."
+      },
+      {
+        question: "What areas do you serve?",
+        answer: "We proudly serve the Greater Toronto Area including Toronto, Mississauga, Brampton, Vaughan, Markham, Richmond Hill, and surrounding communities."
+      },
+      {
+        question: "What's included in seasonal check-ups?",
+        answer: "Our comprehensive seasonal inspections include HVAC system review, plumbing checks, electrical safety assessment, weatherproofing evaluation, and detailed reporting with maintenance recommendations."
+      },
+      {
+        question: "Can I cancel my Home Care Plan membership?",
+        answer: "Yes, memberships can be cancelled with 30 days notice. However, most members find the peace of mind and savings make it an invaluable investment in their home."
+      }
+    ],
+
+    // Theme Configuration
+    theme: {
+      primary: {
+        background: "bg-black",
+        text: "text-white",
+        accent: "text-gold-500"
+      },
+      secondary: {
+        background: "bg-slate-900",
+        text: "text-slate-100", 
+        accent: "text-gold-400"
+      },
+      gold: {
+        primary: "#C9A24D", // Muted premium gold
+        secondary: "#B8941F",
+        light: "#D4B366",
+        dark: "#9A7B1A"
+      },
+      buttons: {
+        primary: "bg-gold-600 hover:bg-gold-700 text-black font-semibold",
+        secondary: "border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black",
+        accent: "bg-black hover:bg-slate-800 text-gold-400 border border-gold-500"
+      }
+    }
+  }
+
+  return {
+    config: impetusConfig,
+    structure: baseResult.structure,
+    content: impetusContent,
+    recommendations: [
+      "Apply black and gold color scheme throughout",
+      "Emphasize membership program as premium offering",
+      "Use professional maintenance expert terminology",
+      "Focus on peace of mind and reliability messaging",
+      "Highlight next-day service availability over speed claims",
+      "Position as premium service for discerning homeowners"
+    ]
+  }
+}
+
+// Helper function to get Impetus-specific styling classes
+export function getImpetusThemeClasses() {
+  return {
+    // Background classes
+    backgrounds: {
+      primary: "bg-black",
+      secondary: "bg-slate-900", 
+      accent: "bg-gradient-to-br from-black via-slate-900 to-black",
+      card: "bg-slate-800 border-gold-600/20"
+    },
+    
+    // Text classes
+    text: {
+      primary: "text-white",
+      secondary: "text-slate-100",
+      accent: "text-gold-500",
+      muted: "text-slate-400"
+    },
+    
+    // Button classes
+    buttons: {
+      primary: "bg-gold-600 hover:bg-gold-700 text-black font-semibold border-0",
+      secondary: "border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black bg-transparent",
+      ghost: "text-gold-400 hover:text-gold-300 hover:bg-slate-800"
+    },
+    
+    // Component-specific classes
+    components: {
+      hero: "bg-gradient-to-br from-black via-slate-900 to-black text-white",
+      section: "bg-slate-900 text-white",
+      card: "bg-slate-800 border border-gold-600/20 text-white",
+      nav: "bg-black/95 backdrop-blur-sm border-b border-gold-600/20"
+    }
+  }
 } 
